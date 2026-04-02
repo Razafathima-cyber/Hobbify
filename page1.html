@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent A Hobby — Order Confirmed!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --teal: #0E7C7B;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
+  --forest: #1E5C2A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 1rem 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+}
+
+/* ── PAGE ── */
+.page {
+  flex: 1;
+  max-width: 720px;
+  margin: 3rem auto;
+  padding: 0 1.5rem 4rem;
+  width: 100%;
+}
+
+/* ── HERO BANNER ── */
+.confirm-banner {
+  background: var(--ink);
+  border: 2.5px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--neon-yellow);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  animation: slideDown 0.4s cubic-bezier(0.34,1.4,0.64,1);
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.confirm-banner::before {
+  content: "✦";
+  position: absolute;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14rem;
+  color: rgba(255,255,255,0.03);
+  top: -3rem;
+  right: -2rem;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.confirm-check {
+  width: 64px;
+  height: 64px;
+  background: var(--forest);
+  border: 2.5px solid var(--neon-yellow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem;
+  font-size: 1.8rem;
+  animation: popIn 0.4s 0.2s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.confirm-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.confirm-title em {
+  font-style: normal;
+  color: var(--neon-yellow);
+}
+
+.confirm-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: rgba(245,237,216,0.6);
+}
+
+.order-id {
+  display: inline-block;
+  margin-top: 1rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 4px 14px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,237,216,0.5);
+}
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 560px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+/* ── CARD BASE ── */
+.card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 1.4rem;
+  animation: fadeUp 0.4s ease both;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.15s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.25s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── ITEM CARD ── */
+.item-card {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.item-img {
+  width: 80px;
+  height: 80px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-details { flex: 1; }
+
+.item-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+
+.item-cat {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-top: 2px;
+}
+
+.item-price-tag {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: var(--red);
+  letter-spacing: 0.04em;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.item-price-tag small {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.45;
+  font-weight: 400;
+}
+
+/* ── DATES CARD ── */
+.dates-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.date-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(26,18,8,0.12);
+}
+
+.date-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.date-item .dl { opacity: 0.55; font-size: 0.82rem; }
+.date-item .dv {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-size: 0.95rem;
+}
+
+/* ── COST CARD ── */
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px dashed rgba(26,18,8,0.12);
+}
+
+.cost-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.cost-row .cl { opacity: 0.55; }
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 2px solid var(--ink);
+}
+
+.total-row .tl {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+
+.total-row .tv {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--red);
+  letter-spacing: 0.04em;
+}
+
+/* ── RENTER CARD ── */
+.renter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.7rem;
+}
+
+.renter-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--cobalt);
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.renter-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.renter-email {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  font-family: 'Caveat', cursive;
+  font-size: 0.92rem;
+}
+
+/* ── TIMELINE ── */
+.timeline-card {
+  grid-column: 1 / -1;
+  padding: 1.4rem 1.6rem;
+}
+
+.timeline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-top: 0.3rem;
+  position: relative;
+}
+
+.timeline-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+/* connecting line */
+.timeline-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.step-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2.5px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 900;
+  background: var(--offwhite);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  margin-bottom: 0.5rem;
+}
+
+.step-dot.done  { background: var(--forest); border-color: var(--forest); color: white; }
+.step-dot.active { background: var(--mustard); border-color: var(--ink); color: var(--ink); }
+.step-dot.pending { background: var(--paper); color: rgba(26,18,8,0.3); border-color: rgba(26,18,8,0.2); }
+
+.step-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.step-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.78rem;
+  opacity: 0.45;
+  margin-top: 1px;
+}
+
+/* ── ACTIONS ── */
+.actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.4s 0.35s ease both;
+}
+
+.btn-primary {
+  flex: 1;
+  min-width: 160px;
+  padding: 13px;
+  background: var(--red);
+  color: white;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-primary:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.btn-secondary {
+  flex: 1;
+  min-width: 140px;
+  padding: 13px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-secondary:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* ── TIPS STRIP ── */
+.tips-strip {
+  background: var(--mustard);
+  border: 2.5px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 1rem 1.4rem;
+  margin-top: 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  animation: fadeUp 0.4s 0.4s ease both;
+}
+
+.tips-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+
+.tips-text {
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.tips-text strong {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 2px;
+}
+</style>
+</head>
+<body>
+
+<div class="site-header">RENT A HOBBY &nbsp;·&nbsp; BORROW. TRY. OWN.</div>
+
+<div class="page">
+
+  <!-- HERO BANNER -->
+  <div class="confirm-banner">
+    <div class="confirm-check">✓</div>
+    <div class="confirm-title">RENTAL <em>CONFIRMED!</em></div>
+    <div class="confirm-sub">Your booking is locked in — get ready to explore ✦</div>
+    <div class="order-id" id="orderId">ORDER #RAH-000000</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- ITEM -->
+    <div class="card item-card">
+      <div class="item-img" id="itemImg">📦</div>
+      <div class="item-details">
+        <div class="item-name" id="itemName">Item Name</div>
+        <div class="item-cat" id="itemCat">Category</div>
+      </div>
+      <div class="item-price-tag">
+        <span id="itemDailyPrice">$0.00</span>
+        <small>per day</small>
+      </div>
+    </div>
+
+    <!-- DATES -->
+    <div class="card">
+      <div class="card-label"> Rental Period</div>
+      <div class="dates-row">
+        <div class="date-item">
+          <span class="dl">Start Date</span>
+          <span class="dv" id="startDate">—</span>
+        </div>
+        <div class="date-item">
+          <span class="dl">End Date</span>
+          <span class="dv" id="endDate">—</span>
+        </div>
+        <div class="date-item">
+          <span class="dl">Duration</span>
+          <span class="dv" id="duration">— days</span>
+        </div>
+        <div class="date-item">
+          <span class="dl">Pickup</span>
+          <span class="dv">At your doorstep</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- COST -->
+    <div class="card">
+      <div class="card-label"> Cost Breakdown</div>
+      <div class="cost-row">
+        <span class="cl">Rental (<span id="costDays">1</span> days)</span>
+        <span id="costSubtotal">$0.00</span>
+      </div>
+      <div class="cost-row">
+        <span class="cl">Platform fee (5%)</span>
+        <span id="costFee">$0.00</span>
+      </div>
+      <div class="cost-row">
+        <span class="cl">Damage deposit</span>
+        <span id="costDeposit">$30.00</span>
+      </div>
+      <div class="total-row">
+        <span class="tl">TOTAL PAID</span>
+        <span class="tv" id="costTotal">$0.00</span>
+      </div>
+    </div>
+
+    <!-- RENTER -->
+    <div class="card">
+      <div class="card-label">Renter Details</div>
+      <div class="renter-row">
+        <div class="renter-avatar" id="renterAvatar">?</div>
+        <div>
+          <div class="renter-name" id="renterName">Your Name</div>
+          <div class="renter-email" id="renterEmail">your@email.com</div>
+        </div>
+      </div>
+      <div class="dates-row">
+        <div class="date-item">
+          <span class="dl">Payment</span>
+          <span class="dv">•••• •••• •••• 4242</span>
+        </div>
+        <div class="date-item">
+          <span class="dl">Status</span>
+          <span class="dv" style="color:var(--forest)">✓ Confirmed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OWNER -->
+    <div class="card">
+      <div class="card-label"> Item Owner</div>
+      <div class="renter-row">
+        <div class="renter-avatar" style="background:var(--teal)">HB</div>
+        <div>
+          <div class="renter-name">Hiba</div>
+          <div class="renter-email">Verified Owner ✦</div>
+        </div>
+      </div>
+      <div class="dates-row">
+        <div class="date-item">
+          <span class="dl">Rating</span>
+          <span class="dv">★★★★★ (42 rentals)</span>
+        </div>
+        <div class="date-item">
+          <span class="dl">Response time</span>
+          <span class="dv">Within 1 hour</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="card timeline-card">
+      <div class="card-label">Order Status</div>
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="step-dot done">✓</div>
+          <div class="step-label">Confirmed</div>
+          <div class="step-sub">Just now</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot active">→</div>
+          <div class="step-label">Preparing</div>
+          <div class="step-sub">Today</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot pending">○</div>
+          <div class="step-label">Dispatch</div>
+          <div class="step-sub">Tomorrow</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot pending">○</div>
+          <div class="step-label">Delivered</div>
+          <div class="step-sub" id="deliverDate">—</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot pending">○</div>
+          <div class="step-label">Returned</div>
+          <div class="step-sub" id="returnDate">—</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+    <a href="home.html" class="btn-secondary">← BACK TO HOME</a>
+    <a href="home.html" class="btn-primary">BROWSE MORE HOBBIES ✦</a>
+    <a href="messages.html" class="btn-secondary">MESSAGE OWNER</a>
+  </div>
+
+  <!-- TIPS -->
+  <div class="tips-strip">
+    <div class="tips-icon">💡</div>
+    <div class="tips-text">
+      <strong>Before Your Rental Arrives</strong>
+      Clear some space, check the item on delivery, and reach out to the owner if anything looks off. Your damage deposit of $30 is fully refundable on safe return.
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ── READ URL PARAMS ── */
+const p        = new URLSearchParams(window.location.search);
+const name     = p.get("name")      || "Canon EOS R5";
+const category = p.get("category")  || "Photography";
+const price    = parseFloat(p.get("price"))  || 89;
+const days     = parseInt(p.get("days"))     || 3;
+const start    = p.get("start")     || "";
+const end      = p.get("end")       || "";
+const renter   = p.get("name_user") || "Renter";
+const email    = p.get("email")     || "renter@email.com";
+const emoji    = p.get("emoji")     || "📦";
+
+const DEPOSIT  = 30;
+const FEE_RATE = 0.05;
+
+/* ── ORDER ID ── */
+const orderId = "RAH-" + Math.random().toString(36).slice(2,8).toUpperCase();
+document.getElementById("orderId").textContent = "ORDER #" + orderId;
+
+/* ── ITEM ── */
+document.getElementById("itemName").textContent      = name;
+document.getElementById("itemCat").textContent       = category;
+document.getElementById("itemDailyPrice").textContent= "$" + price.toFixed(2);
+document.getElementById("itemImg").textContent       = emoji;
+
+/* ── DATES ── */
+function fmt(dateStr) {
+  if (!dateStr) return "—";
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("en-US", { day:"numeric", month:"short", year:"numeric" });
+}
+
+const startDate = start || new Date().toISOString().split("T")[0];
+const endD      = new Date(startDate);
+endD.setDate(endD.getDate() + days);
+const endDate   = end || endD.toISOString().split("T")[0];
+
+document.getElementById("startDate").textContent  = fmt(startDate);
+document.getElementById("endDate").textContent    = fmt(endDate);
+document.getElementById("duration").textContent   = days + " day" + (days > 1 ? "s" : "");
+document.getElementById("deliverDate").textContent= fmt(startDate);
+document.getElementById("returnDate").textContent = fmt(endDate);
+
+/* ── COSTS ── */
+const subtotal = price * days;
+const fee      = subtotal * FEE_RATE;
+const total    = subtotal + fee + DEPOSIT;
+
+document.getElementById("costDays").textContent     = days;
+document.getElementById("costSubtotal").textContent = "$" + subtotal.toFixed(2);
+document.getElementById("costFee").textContent      = "$" + fee.toFixed(2);
+document.getElementById("costTotal").textContent    = "$" + total.toFixed(2);
+
+/* ── RENTER ── */
+document.getElementById("renterName").textContent  = renter;
+document.getElementById("renterEmail").textContent = email;
+document.getElementById("renterAvatar").textContent= renter.charAt(0).toUpperCase();
+
+/* ── PAGE TITLE ── */
+document.title = "Confirmed: " + name + " — Rent A Hobby";
+
+/* ── AUTO IMAGE VIA UNSPLASH ── */
+async function loadItemImage() {
+  const imgEl = document.getElementById("itemImg");
+  try {
+    const aiRes = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 30,
+        system: "Reply with ONLY a 2-3 word Unsplash search keyword for the product. No quotes or explanation.",
+        messages: [{ role: "user", content: name }]
+      })
+    });
+    const aiData  = await aiRes.json();
+    const keyword = aiData.content?.[0]?.text?.trim() || name;
+    const uRes    = await fetch(
+      "https://api.unsplash.com/search/photos?query=" +
+      encodeURIComponent(keyword) +
+      "&per_page=1&orientation=squarish&client_id=lbFVjICMXNxzLFyYD7tBswT6eJRnFtQ1s7_4lIi8BbE"
+    );
+    const uData = await uRes.json();
+    const photo = uData.results?.[0]?.urls?.small;
+    if (photo) {
+      imgEl.innerHTML = "";
+      imgEl.style.background = "var(--paper)";
+      const img = document.createElement("img");
+      img.src = photo;
+      img.alt = name;
+      img.style.cssText = "width:100%;height:100%;object-fit:cover;display:block;";
+      imgEl.appendChild(img);
+    }
+  } catch(e) { /* keep emoji fallback */ }
+}
+
+loadItemImage();
+</script>
+
+</body>
+</html>

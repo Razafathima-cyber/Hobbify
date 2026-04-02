@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intro</title>
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: black;
+  }
+
+  video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+  }
+</style>
+</head>
+
+<body>
+
+<video id="introVideo" autoplay muted playsinline>
+  <source src="whisk.mp4" type="video/mp4">
+</video>
+
+<script>
+  const video = document.getElementById("introVideo");
+
+  let loops = 0;
+  const maxLoops = 2; // change how many times it loops
+
+  video.addEventListener("ended", () => {
+    loops++;
+
+    if (loops < maxLoops) {
+      video.currentTime = 0;
+      video.play();
+    } else {
+      window.location.href = "login.html"; // next page
+    }
+  });
+</script>
+
+</body>
+</html>

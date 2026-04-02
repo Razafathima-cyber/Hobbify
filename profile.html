@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent A Hobby — Profile</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --teal: #0E7C7B;
+  --forest: #1E5C2A;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
+  --gold: #C8960C;
+  --gold-light: #F0C840;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.9rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
+  font-size: 1rem;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  padding: 6px 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.2);
+  box-shadow: 3px 3px 0 rgba(255,255,255,0.08);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.back-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 rgba(255,255,255,0.12); }
+
+/* ── PAGE ── */
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+/* ── HERO BANNER ── */
+.profile-hero {
+  background: var(--ink);
+  border-left: none;
+  border-right: none;
+  padding: 2.5rem 2rem 0;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+.profile-hero::before {
+  content: "RAH";
+  position: absolute;
+  right: -1rem;
+  top: -2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12rem;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.02em;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  padding-bottom: 0;
+}
+
+/* avatar */
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--cobalt);
+  border: 3px solid var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: white;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  position: relative;
+  bottom: -16px;
+}
+
+.premium-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid var(--gold-light);
+  display: none;
+  animation: ringPulse 2s infinite;
+}
+
+.premium-ring.show { display: block; }
+
+@keyframes ringPulse {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+.premium-badge-avatar {
+  position: absolute;
+  bottom: -8px;
+  right: -6px;
+  background: var(--gold);
+  color: white;
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 1px 5px;
+  text-transform: uppercase;
+  display: none;
+}
+
+.premium-badge-avatar.show { display: block; }
+
+.hero-info {
+  flex: 1;
+  padding-bottom: 1.2rem;
+}
+
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  letter-spacing: 0.05em;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.hero-email {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: rgba(245,237,216,0.5);
+  margin-top: 2px;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: rgba(245,237,216,0.75);
+}
+
+.badge.premium-badge {
+  background: var(--gold);
+  border-color: var(--gold-light);
+  color: var(--ink);
+  display: none;
+}
+
+.badge.premium-badge.show { display: inline-block; }
+
+/* stats row */
+.stats-row {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 1.2rem;
+}
+
+.stat {
+  padding: 1rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--neon-yellow);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: 'Caveat', cursive;
+  font-size: 0.82rem;
+  color: rgba(245,237,216,0.45);
+  margin-top: 2px;
+}
+
+/* ── CONTENT GRID ── */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 680px) {
+  .content-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .hero-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--cream);
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 1.2rem;
+}
+
+/* info rows */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(26,18,8,0.1);
+  font-size: 0.88rem;
+}
+
+.info-row:last-child { border-bottom: none; }
+.info-label { opacity: 0.5; font-size: 0.82rem; }
+.info-val { font-weight: 700; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.04em; font-size: 0.95rem; }
+.info-val.green { color: var(--forest); }
+.info-val.gold  { color: var(--gold); }
+
+/* activity item */
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px dashed rgba(26,18,8,0.1);
+}
+
+.activity-item:last-child { border-bottom: none; }
+
+.activity-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  border: 2px solid var(--ink);
+}
+
+.activity-text { flex: 1; }
+.activity-title { font-size: 0.88rem; font-weight: 700; }
+.activity-sub { font-family: 'Caveat', cursive; font-size: 0.85rem; opacity: 0.5; margin-top: 1px; }
+.activity-amt { font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: 0.04em; color: var(--red); }
+
+/* ── PREMIUM CARD ── */
+.premium-card {
+  background: var(--ink);
+  color: var(--cream);
+  border: 2.5px solid var(--gold);
+  box-shadow: 6px 6px 0 var(--gold);
+  padding: 1.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  content: "★";
+  position: absolute;
+  right: -0.8rem;
+  top: -1.5rem;
+  font-size: 8rem;
+  color: rgba(200,150,12,0.08);
+  pointer-events: none;
+  line-height: 1;
+}
+
+.premium-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.premium-crown {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.premium-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.07em;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.premium-card-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  opacity: 0.5;
+  margin-top: 1px;
+}
+
+/* features list */
+.prem-features {
+  list-style: none;
+  margin-bottom: 1.4rem;
+}
+
+.prem-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.prem-feature:last-child { border-bottom: none; }
+
+.prem-check {
+  width: 18px;
+  height: 18px;
+  background: var(--gold);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  color: var(--ink);
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.prem-feature-text { flex: 1; }
+.prem-feature-title { font-weight: 700; color: var(--cream); display: block; }
+.prem-feature-desc  { font-family: 'Caveat', cursive; font-size: 0.82rem; opacity: 0.5; }
+
+/* pricing */
+.prem-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.prem-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.prem-period {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  opacity: 0.5;
+}
+
+.prem-save {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  color: var(--gold-light);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+/* toggle billing */
+.billing-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1.2rem;
+  border: 1.5px solid rgba(255,255,255,0.15);
+}
+
+.billing-opt {
+  flex: 1;
+  padding: 6px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  color: rgba(245,237,216,0.45);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.billing-opt.active {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* upgrade btn */
+.upgrade-btn {
+  width: 100%;
+  padding: 13px;
+  background: var(--gold);
+  color: var(--ink);
+  border: 2px solid var(--gold-light);
+  box-shadow: 4px 4px 0 rgba(200,150,12,0.4);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.upgrade-btn:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 6px 6px 0 rgba(200,150,12,0.5);
+}
+
+.upgrade-btn:active {
+  transform: translate(2px,2px);
+  box-shadow: 2px 2px 0 rgba(200,150,12,0.3);
+}
+
+.upgrade-btn:disabled {
+  background: var(--forest);
+  border-color: var(--forest);
+  color: white;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.prem-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.8rem;
+  opacity: 0.35;
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+/* ── ACTIVE PREMIUM STATE ── */
+.active-premium-banner {
+  background: linear-gradient(135deg, var(--gold) 0%, #a07010 100%);
+  border: 2.5px solid var(--gold-light);
+  box-shadow: 6px 6px 0 var(--gold-light);
+  padding: 1.2rem 1.5rem;
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.active-premium-banner.show { display: flex; }
+
+.apb-icon { font-size: 1.8rem; flex-shrink: 0; }
+.apb-text { flex: 1; }
+.apb-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.apb-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+  color: rgba(26,18,8,0.6);
+  margin-top: 2px;
+}
+
+.apb-expires {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(26,18,8,0.15);
+  padding: 4px 10px;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+/* ── PREMIUM PERKS (active state shown in profile) ── */
+.perk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin-bottom: 0;
+}
+
+.perk {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.perk-icon { font-size: 1.2rem; flex-shrink: 0; }
+.perk-info { flex: 1; min-width: 0; }
+.perk-title { font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+.perk-sub   { font-family: 'Caveat', cursive; font-size: 0.8rem; opacity: 0.5; }
+.perk.locked { opacity: 0.4; }
+.perk.unlocked { background: rgba(30,92,42,0.08); border-color: var(--forest); }
+
+/* ── SUCCESS OVERLAY ── */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,18,8,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay.show { display: flex; }
+
+.overlay-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--gold);
+  box-shadow: 8px 8px 0 var(--gold-light);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 380px;
+  width: 90%;
+  animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.ov-icon  { font-size: 3rem; margin-bottom: 0.8rem; }
+.ov-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+
+.ov-msg {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.ov-perks {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.ov-perk {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px dashed rgba(26,18,8,0.1);
+  font-size: 0.88rem;
+}
+
+.ov-perk:last-child { border-bottom: none; }
+.ov-perk::before { content: "✦"; color: var(--gold); font-size: 0.7rem; }
+
+.ov-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--gold);
+  transition: transform 0.1s;
+}
+
+.ov-btn:hover { transform: translate(-1px,-1px); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="site-header">
+  <span>RENT A HOBBY &nbsp;·&nbsp; BORROW. TRY. OWN.</span>
+  <a href="home.html" class="back-btn">← HOME</a>
+</div>
+
+<!-- HERO -->
+<div class="profile-hero" id="profileHero">
+  <div class="hero-inner">
+    <div class="avatar-wrap">
+      <div class="premium-ring" id="premiumRing"></div>
+      <div class="avatar" id="avatarEl">?</div>
+      <div class="premium-badge-avatar" id="premBadgeAvatar">PRO</div>
+    </div>
+    <div class="hero-info">
+      <div class="hero-name" id="heroName">Loading…</div>
+      <div class="hero-email" id="heroEmail">—</div>
+      <div class="hero-badges">
+        <span class="badge">✦ Member</span>
+        <span class="badge">📍 Kerala</span>
+        <span class="badge premium-badge" id="premBadgeHero">★ PREMIUM</span>
+      </div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-val">4</div><div class="stat-label">Rentals</div></div>
+    <div class="stat"><div class="stat-val">2</div><div class="stat-label">Listed</div></div>
+    <div class="stat"><div class="stat-val">★4.9</div><div class="stat-label">Rating</div></div>
+    <div class="stat"><div class="stat-val" id="statMember">Free</div><div class="stat-label">Plan</div></div>
+  </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page">
+
+  <!-- Active premium banner (hidden until upgraded) -->
+  <div class="active-premium-banner" id="activePremBanner">
+    <div class="apb-icon"></div>
+    <div class="apb-text">
+      <div class="apb-title">PREMIUM MEMBER</div>
+      <div class="apb-sub">All perks are active on your account</div>
+    </div>
+    <div class="apb-expires" id="apbExpires">Renews —</div>
+  </div>
+
+  <div class="content-grid">
+
+    <!-- LEFT COLUMN -->
+    <div>
+
+      <!-- ACCOUNT INFO -->
+      <div class="card">
+        <div class="card-title">Account Info</div>
+        <div class="info-row">
+          <span class="info-label">Full Name</span>
+          <span class="info-val" id="infoName">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email</span>
+          <span class="info-val" id="infoEmail">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Member Since</span>
+          <span class="info-val" id="infoSince">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Plan</span>
+          <span class="info-val gold" id="infoPlan">Free</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Deposit Waived</span>
+          <span class="info-val" id="infoDeposit">No</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Free Delivery</span>
+          <span class="info-val" id="infoDelivery">No</span>
+        </div>
+      </div>
+
+      <!-- ACTIVE PERKS (shown when premium) -->
+      <div class="card" id="perksCard" style="display:none">
+        <div class="card-title">Your Premium Perks</div>
+        <div class="perk-grid">
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">No Ads</div><div class="perk-sub">Completely ad-free</div></div></div>
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">Priority Access</div><div class="perk-sub">Early sale listings</div></div></div>
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">10% Discount</div><div class="perk-sub">On all rentals</div></div></div>
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">No Deposit</div><div class="perk-sub">Deposit waived</div></div></div>
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">Free Delivery</div><div class="perk-sub">On every order</div></div></div>
+          <div class="perk unlocked"><div class="perk-icon"></div><div class="perk-info"><div class="perk-title">Priority Support</div><div class="perk-sub">Faster responses</div></div></div>
+        </div>
+      </div>
+
+      <!-- RECENT ACTIVITY -->
+      <div class="card">
+        <div class="card-title">Recent Activity</div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--paper)"></div>
+          <div class="activity-text">
+            <div class="activity-title">Rented Canon EOS R5</div>
+            <div class="activity-sub">3 days · Mar 15 – Mar 18</div>
+          </div>
+          <div class="activity-amt">$297</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--paper)">🎸</div>
+          <div class="activity-text">
+            <div class="activity-title">Listed Acoustic Guitar</div>
+            <div class="activity-sub">Published · Mar 10</div>
+          </div>
+          <div class="activity-amt" style="color:var(--forest)">+$45</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--paper)">🛹</div>
+          <div class="activity-text">
+            <div class="activity-title">Rented Skateboard</div>
+            <div class="activity-sub">2 days · Mar 5 – Mar 7</div>
+          </div>
+          <div class="activity-amt">$54</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background:var(--paper)">🎨</div>
+          <div class="activity-text">
+            <div class="activity-title">Rented Oil Paint Kit</div>
+            <div class="activity-sub">5 days · Feb 20 – Feb 25</div>
+          </div>
+          <div class="activity-amt">$100</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: PREMIUM CARD -->
+    <div>
+      <div class="premium-card" id="premiumCard">
+        <div class="premium-card-header">
+          <div class="premium-crown"></div>
+          <div>
+            <div class="premium-card-title">PREMIUM</div>
+            <div class="premium-card-sub" id="premCardSub">Unlock the full experience</div>
+          </div>
+        </div>
+
+        <!-- billing toggle -->
+        <div class="billing-toggle" id="billingToggle">
+          <button class="billing-opt active" onclick="setBilling('monthly')">Monthly</button>
+          <button class="billing-opt" onclick="setBilling('yearly')">Yearly</button>
+        </div>
+
+        <!-- price -->
+        <div class="prem-price-row">
+          <div class="prem-price" id="premPrice">$4.99</div>
+          <div class="prem-period" id="premPeriod">/ month</div>
+        </div>
+        <div class="prem-save" id="premSave" style="visibility:hidden">Save $10 vs monthly</div>
+
+        <!-- features -->
+        <ul class="prem-features">
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">Zero In-App Ads</span>
+              <span class="prem-feature-desc">Browse and rent completely ad-free</span>
+            </div>
+          </li>
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">Early Sale Priority</span>
+              <span class="prem-feature-desc">First access to new listings & flash sales</span>
+            </div>
+          </li>
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">10% Rental Discount</span>
+              <span class="prem-feature-desc">On every rental you make</span>
+            </div>
+          </li>
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">Deposit Waived</span>
+              <span class="prem-feature-desc">Never pay a damage deposit again</span>
+            </div>
+          </li>
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">Free Delivery</span>
+              <span class="prem-feature-desc">Every order delivered at no extra cost</span>
+            </div>
+          </li>
+          <li class="prem-feature">
+            <div class="prem-check">✓</div>
+            <div class="prem-feature-text">
+              <span class="prem-feature-title">Priority Support</span>
+              <span class="prem-feature-desc">Jump the queue — faster help always</span>
+            </div>
+          </li>
+        </ul>
+
+        <button class="upgrade-btn" id="upgradeBtn" onclick="handleUpgrade()">
+          UPGRADE TO PREMIUM ★
+        </button>
+        <div class="prem-note" id="premNote">Cancel anytime · No hidden fees</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- UPGRADE SUCCESS OVERLAY -->
+<div class="overlay" id="upgradeOverlay">
+  <div class="overlay-card">
+    <div class="ov-icon"></div>
+    <div class="ov-title">YOU'RE <span style="color:var(--gold)">PREMIUM!</span></div>
+    <div class="ov-msg" id="ovMsg">Welcome to the club. All perks are now active on your account.</div>
+    <ul class="ov-perks">
+      <li class="ov-perk">Zero ads — ever</li>
+      <li class="ov-perk">10% off every rental</li>
+      <li class="ov-perk">No damage deposit required</li>
+      <li class="ov-perk">Free delivery on all orders</li>
+      <li class="ov-perk">Early access to new listings & sales</li>
+    </ul>
+    <button class="ov-btn" onclick="dismissUpgrade()">START EXPLORING ✦</button>
+  </div>
+</div>
+
+<script>
+/* ── READ USER FROM URL PARAMS (passed from login/random.html) ── */
+const p     = new URLSearchParams(window.location.search);
+const name  = p.get("name")  || localStorage.getItem("rah_name")  || "Hobby Explorer";
+const email = p.get("email") || localStorage.getItem("rah_email") || "user@rentahobby.com";
+
+// Persist so refreshing keeps the name
+localStorage.setItem("rah_name",  name);
+localStorage.setItem("rah_email", email);
+
+/* ── POPULATE PROFILE ── */
+const initials = name.split(" ").map(w => w[0]).join("").slice(0,2).toUpperCase();
+document.getElementById("avatarEl").textContent  = initials;
+document.getElementById("heroName").textContent  = name.toUpperCase();
+document.getElementById("heroEmail").textContent = email;
+document.getElementById("infoName").textContent  = name;
+document.getElementById("infoEmail").textContent = email;
+
+// Member since — today
+const since = new Date();
+document.getElementById("infoSince").textContent =
+  since.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+
+/* ── PREMIUM STATE ── */
+let isPremium  = localStorage.getItem("rah_premium") === "true";
+let billing    = "monthly";
+
+function applyPremiumUI() {
+  if (!isPremium) return;
+
+  // header elements
+  document.getElementById("premiumRing").classList.add("show");
+  document.getElementById("premBadgeAvatar").classList.add("show");
+  document.getElementById("premBadgeHero").classList.add("show");
+
+  // stats
+  document.getElementById("statMember").textContent = "PRO";
+  document.getElementById("statMember").style.color  = "var(--gold-light)";
+
+  // account info
+  document.getElementById("infoPlan").textContent      = "★ Premium";
+  document.getElementById("infoPlan").style.color      = "var(--gold)";
+  document.getElementById("infoDeposit").textContent   = "✓ Yes";
+  document.getElementById("infoDeposit").classList.add("green");
+  document.getElementById("infoDelivery").textContent  = "✓ Free";
+  document.getElementById("infoDelivery").classList.add("green");
+
+  // active banner
+  const banner = document.getElementById("activePremBanner");
+  banner.classList.add("show");
+  const renewal = new Date();
+  renewal.setMonth(renewal.getMonth() + (billing === "yearly" ? 12 : 1));
+  document.getElementById("apbExpires").textContent =
+    "Renews " + renewal.toLocaleDateString("en-US", { day:"numeric", month:"short", year:"numeric" });
+
+  // perks card
+  document.getElementById("perksCard").style.display = "block";
+
+  // premium card — show "active" state
+  document.getElementById("premCardSub").textContent = "You're a Premium member ★";
+  document.getElementById("billingToggle").style.display = "none";
+  document.getElementById("premPrice").style.display     = "none";
+  document.getElementById("premPeriod").style.display    = "none";
+  document.getElementById("premSave").style.display      = "none";
+  document.getElementById("upgradeBtn").textContent      = "★ PREMIUM ACTIVE";
+  document.getElementById("upgradeBtn").disabled         = true;
+  document.getElementById("premNote").textContent        = "All perks are live on your account";
+}
+
+/* ── BILLING TOGGLE ── */
+function setBilling(type) {
+  billing = type;
+  document.querySelectorAll(".billing-opt").forEach(b => b.classList.remove("active"));
+  event.target.classList.add("active");
+
+  if (type === "monthly") {
+    document.getElementById("premPrice").textContent  = "$4.99";
+    document.getElementById("premPeriod").textContent = "/ month";
+    document.getElementById("premSave").style.visibility = "hidden";
+  } else {
+    document.getElementById("premPrice").textContent  = "$39.99";
+    document.getElementById("premPeriod").textContent = "/ year";
+    document.getElementById("premSave").style.visibility = "visible";
+  }
+}
+
+/* ── UPGRADE ── */
+function handleUpgrade() {
+  const plan = billing === "yearly" ? "$39.99/year" : "$4.99/month";
+  document.getElementById("ovMsg").textContent =
+    `You're now on the ${billing === "yearly" ? "Yearly" : "Monthly"} Premium plan (${plan}). All perks are live!`;
+  document.getElementById("upgradeOverlay").classList.add("show");
+}
+
+function dismissUpgrade() {
+  isPremium = true;
+  localStorage.setItem("rah_premium", "true");
+  document.getElementById("upgradeOverlay").classList.remove("show");
+  applyPremiumUI();
+}
+
+/* ── INIT ── */
+applyPremiumUI();
+</script>
+
+</body>
+</html>

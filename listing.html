@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent A Hobby — List Your Item</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600;700&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --teal: #0E7C7B;
+  --forest: #1E5C2A;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 0.9rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.15em;
+  font-size: 1rem;
+}
+
+.header-brand { letter-spacing: 0.15em; }
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  padding: 6px 16px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px solid rgba(255,255,255,0.25);
+  box-shadow: 3px 3px 0 rgba(255,255,255,0.1);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.back-btn:hover {
+  transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 rgba(255,255,255,0.15);
+}
+
+/* ── PAGE ── */
+.page {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem 5rem;
+}
+
+/* ── PAGE TITLE ── */
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+
+.page-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+}
+
+/* ── TWO COL LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 2rem;
+}
+
+/* section label */
+.section-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--cream);
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 1.2rem;
+}
+
+.section-gap { margin-top: 1.8rem; }
+
+/* fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 1.1rem;
+}
+
+.field label {
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.93rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  appearance: none;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.55;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A1208' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.field-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  opacity: 0.45;
+  margin-top: 2px;
+}
+
+/* two-col row */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .row { grid-template-columns: 1fr; }
+}
+
+/* features tags */
+.tags-input-wrap {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 8px;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  min-height: 46px;
+  align-items: center;
+  cursor: text;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tags-input-wrap:focus-within {
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
+}
+
+.tag {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 3px 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tag-remove {
+  cursor: pointer;
+  opacity: 0.6;
+  font-size: 0.75rem;
+  line-height: 1;
+  background: none;
+  border: none;
+  color: inherit;
+  padding: 0;
+}
+
+.tag-remove:hover { opacity: 1; }
+
+.tags-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  min-width: 120px;
+  flex: 1;
+  padding: 2px 4px;
+}
+
+/* photo upload */
+.photo-drop {
+  border: 2.5px dashed rgba(26,18,8,0.3);
+  background: var(--paper);
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  position: relative;
+}
+
+.photo-drop:hover,
+.photo-drop.dragover {
+  border-color: var(--red);
+  background: rgba(217,43,26,0.04);
+}
+
+.photo-drop input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.drop-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+
+.drop-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.drop-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  opacity: 0.45;
+}
+
+/* photo previews */
+.photo-previews {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.photo-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-thumb .remove-photo {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: var(--red);
+  color: white;
+  border: none;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+}
+
+/* ── SUBMIT ── */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--red);
+  color: white;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.submit-btn:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.submit-btn:active {
+  transform: translate(2px,2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* ── PREVIEW SIDEBAR ── */
+.preview-card {
+  background: var(--ink);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--mustard);
+  position: sticky;
+  top: 1.5rem;
+  overflow: hidden;
+}
+
+.preview-header {
+  background: var(--red);
+  padding: 0.7rem 1.1rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.preview-img {
+  width: 100%;
+  height: 180px;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+
+.preview-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.preview-img-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.3;
+}
+
+.preview-img-placeholder span { font-size: 2.5rem; }
+
+.preview-img-placeholder p {
+  font-family: 'Caveat', cursive;
+  font-size: 0.9rem;
+}
+
+.preview-body { padding: 1.2rem; }
+
+.preview-cat {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  margin-bottom: 0.3rem;
+}
+
+.preview-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  color: var(--cream);
+  min-height: 1.8rem;
+}
+
+.preview-desc {
+  font-size: 0.82rem;
+  opacity: 0.6;
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
+  min-height: 2.5rem;
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+}
+
+.preview-price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--neon-yellow);
+  letter-spacing: 0.04em;
+}
+
+.preview-price small {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  opacity: 0.45;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.preview-tag {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 2px 8px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(245,237,216,0.7);
+}
+
+/* ── SUCCESS OVERLAY ── */
+.success-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,18,8,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-overlay.show { display: flex; }
+
+.success-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--neon-yellow);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  animation: popIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.success-icon { font-size: 2.8rem; margin-bottom: 0.8rem; }
+
+.success-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.4rem;
+}
+
+.success-msg {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.success-actions {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.s-btn-primary {
+  flex: 1;
+  padding: 11px;
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--mustard);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  transition: transform 0.1s;
+}
+
+.s-btn-primary:hover { transform: translate(-1px,-1px); }
+
+.s-btn-secondary {
+  flex: 1;
+  padding: 11px;
+  background: var(--cream);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  transition: transform 0.1s;
+}
+
+.s-btn-secondary:hover { transform: translate(-1px,-1px); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="site-header">
+  <span class="header-brand">RENT A HOBBY &nbsp;·&nbsp; BORROW. TRY. OWN.</span>
+  <a href="home.html" class="back-btn">← HOME</a>
+</div>
+
+<div class="page">
+
+  <div class="page-title">LIST YOUR ITEM</div>
+  <p class="page-sub">Turn your unused gear into rental income ✦</p>
+
+  <div class="layout">
+
+    <!-- ── FORM ── -->
+    <form class="form-card" id="listForm">
+
+      <!-- ITEM INFO -->
+      <div class="section-label">Item Details</div>
+
+      <div class="field">
+        <label>Item Name</label>
+        <input type="text" id="fName" placeholder="e.g. Fender Stratocaster '72" maxlength="60" oninput="livePreview()">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Category</label>
+          <select id="fCategory" onchange="livePreview()">
+            <option value="">Select category…</option>
+            <option>Music</option>
+            <option>Photography</option>
+            <option>Outdoor & Sports</option>
+            <option>Art & Craft</option>
+            <option>Gaming</option>
+            <option>Cooking</option>
+            <option>Tech & Gadgets</option>
+            <option>Fitness</option>
+            <option>Reading & Learning</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Condition</label>
+          <select id="fCondition">
+            <option value="">Select condition…</option>
+            <option>Like New</option>
+            <option>Excellent</option>
+            <option>Good</option>
+            <option>Fair</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <textarea id="fDesc" placeholder="Tell renters what makes this item special, what's included, any quirks to know about…" oninput="livePreview()"></textarea>
+        <span class="field-hint">Be specific — good descriptions get 3x more rentals</span>
+      </div>
+
+      <!-- PRICING -->
+      <div class="section-label section-gap">Pricing</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Daily Rate ($)</label>
+          <input type="number" id="fPrice" placeholder="0.00" min="1" step="0.01" oninput="livePreview()">
+        </div>
+        <div class="field">
+          <label>Damage Deposit ($)</label>
+          <input type="number" id="fDeposit" placeholder="30.00" min="0" step="0.01" value="30">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label>Min. Rental (days)</label>
+          <input type="number" id="fMinDays" placeholder="1" min="1" value="1">
+        </div>
+        <div class="field">
+          <label>Max. Rental (days)</label>
+          <input type="number" id="fMaxDays" placeholder="30" min="1" value="30">
+        </div>
+      </div>
+
+      <!-- FEATURES -->
+      <div class="section-label section-gap">Features / Tags</div>
+
+      <div class="field">
+        <label>Add Features (press Enter)</label>
+        <div class="tags-input-wrap" id="tagsWrap" onclick="document.getElementById('tagInput').focus()">
+          <input type="text" id="tagInput" class="tags-input" placeholder="e.g. Wireless, 4K, Carry case…">
+        </div>
+        <span class="field-hint">Type a feature and press Enter to add it</span>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="section-label section-gap">Photos</div>
+
+      <div class="field">
+        <label>Upload Photos (up to 6)</label>
+        <div class="photo-drop" id="photoDrop">
+          <input type="file" id="photoInput" accept="image/*" multiple onchange="handlePhotos(this.files)">
+          <div class="drop-icon">📸</div>
+          <div class="drop-label">Click to upload or drag & drop</div>
+          <div class="drop-hint">JPG, PNG, WEBP · Max 10MB each</div>
+        </div>
+        <div class="photo-previews" id="photoPreviews"></div>
+      </div>
+
+      <!-- CONTACT -->
+      <div class="section-label section-gap">Your Details</div>
+
+      <div class="row">
+        <div class="field">
+          <label>Your Name</label>
+          <input type="text" id="fOwnerName" placeholder="Full name">
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" id="fOwnerEmail" placeholder="you@email.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Phone (optional)</label>
+        <input type="tel" id="fPhone" placeholder="+91 00000 00000">
+      </div>
+
+      <div class="field">
+        <label>Location / City</label>
+        <input type="text" id="fLocation" placeholder="e.g. Thiruvananthapuram, Kerala">
+      </div>
+
+      <button type="submit" class="submit-btn">PUBLISH LISTING ✦</button>
+
+    </form>
+
+    <!-- ── LIVE PREVIEW ── -->
+    <div class="preview-card">
+      <div class="preview-header">Live Preview</div>
+
+      <div class="preview-img" id="previewImg">
+        <div class="preview-img-placeholder">
+          <span>🖼</span>
+          <p>Photo preview</p>
+        </div>
+      </div>
+
+      <div class="preview-body">
+        <div class="preview-cat" id="previewCat">Category</div>
+        <div class="preview-name" id="previewName">Item name…</div>
+        <div class="preview-desc" id="previewDesc">Your description will appear here…</div>
+        <div class="preview-price">
+          <span id="previewPrice">$—</span>
+          <small> / day</small>
+        </div>
+        <div class="preview-tags" id="previewTags"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-card">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">LISTING LIVE!</div>
+    <div class="success-msg" id="successMsg">Your item is now listed on Rent A Hobby. Renters can discover it right away!</div>
+    <div class="success-actions">
+      <a href="home.html" class="s-btn-primary">← HOME</a>
+      <button class="s-btn-secondary" onclick="resetForm()">LIST ANOTHER</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── TAGS ── */
+const tags = [];
+
+document.getElementById("tagInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const val = this.value.trim();
+    if (val && !tags.includes(val) && tags.length < 8) {
+      tags.push(val);
+      renderTags();
+      this.value = "";
+      livePreview();
+    }
+  }
+});
+
+function renderTags() {
+  const wrap = document.getElementById("tagsWrap");
+  const input = document.getElementById("tagInput");
+  // remove existing tag pills
+  wrap.querySelectorAll(".tag").forEach(t => t.remove());
+  tags.forEach((t, i) => {
+    const pill = document.createElement("div");
+    pill.className = "tag";
+    pill.innerHTML = t + `<button class="tag-remove" onclick="removeTag(${i})">✕</button>`;
+    wrap.insertBefore(pill, input);
+  });
+}
+
+function removeTag(i) {
+  tags.splice(i, 1);
+  renderTags();
+  livePreview();
+}
+
+/* ── PHOTOS ── */
+let photos = [];
+
+function handlePhotos(files) {
+  const remaining = 6 - photos.length;
+  const toAdd = Array.from(files).slice(0, remaining);
+  toAdd.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      photos.push(e.target.result);
+      renderPreviews();
+      updatePreviewImg();
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderPreviews() {
+  const container = document.getElementById("photoPreviews");
+  container.innerHTML = "";
+  photos.forEach((src, i) => {
+    const thumb = document.createElement("div");
+    thumb.className = "photo-thumb";
+    thumb.innerHTML = `
+      <img src="${src}" alt="Photo ${i+1}">
+      <button class="remove-photo" onclick="removePhoto(${i})">✕</button>
+    `;
+    container.appendChild(thumb);
+  });
+}
+
+function removePhoto(i) {
+  photos.splice(i, 1);
+  renderPreviews();
+  updatePreviewImg();
+}
+
+function updatePreviewImg() {
+  const el = document.getElementById("previewImg");
+  if (photos.length > 0) {
+    el.innerHTML = `<img src="${photos[0]}" alt="Preview">`;
+  } else {
+    el.innerHTML = `<div class="preview-img-placeholder"><span>🖼</span><p>Photo preview</p></div>`;
+  }
+}
+
+/* ── DRAG & DROP ── */
+const drop = document.getElementById("photoDrop");
+drop.addEventListener("dragover", e => { e.preventDefault(); drop.classList.add("dragover"); });
+drop.addEventListener("dragleave", ()  => drop.classList.remove("dragover"));
+drop.addEventListener("drop", e => {
+  e.preventDefault();
+  drop.classList.remove("dragover");
+  handlePhotos(e.dataTransfer.files);
+});
+
+/* ── LIVE PREVIEW ── */
+function livePreview() {
+  const name  = document.getElementById("fName").value.trim();
+  const cat   = document.getElementById("fCategory").value;
+  const desc  = document.getElementById("fDesc").value.trim();
+  const price = document.getElementById("fPrice").value;
+
+  document.getElementById("previewName").textContent = name  || "Item name…";
+  document.getElementById("previewCat").textContent  = cat   || "Category";
+  document.getElementById("previewDesc").textContent = desc  || "Your description will appear here…";
+  document.getElementById("previewPrice").textContent= price ? "$" + parseFloat(price).toFixed(2) : "$—";
+
+  // tags
+  const tagsEl = document.getElementById("previewTags");
+  tagsEl.innerHTML = tags.map(t => `<span class="preview-tag">${t}</span>`).join("");
+}
+
+/* ── SUBMIT ── */
+document.getElementById("listForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name  = document.getElementById("fName").value.trim();
+  const price = document.getElementById("fPrice").value;
+  const email = document.getElementById("fOwnerEmail").value.trim();
+
+  if (!name) { alert("Please add an item name."); return; }
+  if (!price || parseFloat(price) <= 0) { alert("Please set a daily price."); return; }
+  if (!email) { alert("Please enter your email."); return; }
+
+  // Update success message with item name
+  document.getElementById("successMsg").textContent =
+    `"${name}" is now live on Rent A Hobby. Renters can discover it right away!`;
+
+  document.getElementById("successOverlay").classList.add("show");
+});
+
+/* ── RESET ── */
+function resetForm() {
+  document.getElementById("listForm").reset();
+  photos = [];
+  tags.length = 0;
+  renderPreviews();
+  renderTags();
+  livePreview();
+  updatePreviewImg();
+  document.getElementById("successOverlay").classList.remove("show");
+}
+</script>
+
+</body>

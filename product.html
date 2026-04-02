@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Rent A Hobby</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --forest: #1E5C2A;
+  --teal: #0E7C7B;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.site-header {
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 1rem 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+}
+
+/* ── PAGE WRAPPER ── */
+.page {
+  max-width: 1100px;
+  margin: auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* ── PAGE TITLE ── */
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.section-sub {
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+}
+
+/* ── PRODUCT GRID ── */
+.product-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .product-layout { grid-template-columns: 1fr; }
+}
+
+/* ── IMAGE CARD ── */
+.product-img-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.product-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+  display: block;
+}
+
+.product-img-card img:hover {
+  transform: scale(1.04);
+}
+
+.no-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  opacity: 0.4;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── INFO CARD ── */
+.product-info-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 2rem;
+}
+
+.product-category-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--teal);
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 0.8rem;
+}
+
+.product-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+
+.product-price {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--red);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.4rem;
+}
+
+.product-price span {
+  font-size: 1rem;
+  color: var(--ink);
+  opacity: 0.5;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* features list */
+.features-list {
+  list-style: none;
+  margin-bottom: 1.8rem;
+}
+
+.features-list li {
+  font-size: 0.9rem;
+  padding: 6px 0;
+  border-bottom: 1px dashed rgba(26,18,8,0.15);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.features-list li::before {
+  content: "✦";
+  color: var(--mustard);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── RENT BUTTON ── */
+.rent-btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  background: var(--red);
+  color: white;
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.rent-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.rent-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* ── ABOUT BOX ── */
+.about-box {
+  margin-top: 2rem;
+  background: var(--ink);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--mustard);
+  padding: 2rem;
+}
+
+.about-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.8rem;
+  color: var(--neon-yellow);
+}
+
+.about-box p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+/* ── REVIEWS ── */
+.reviews-section {
+  margin-top: 2rem;
+}
+
+.reviews-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.07em;
+  margin-bottom: 1.2rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.review-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 1.2rem;
+}
+
+.review-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.review-stars {
+  color: var(--mustard);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-card p {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* ── IMAGE LOADING SHIMMER ── */
+.img-loading {
+  background: linear-gradient(90deg, var(--paper) 25%, var(--cream) 50%, var(--paper) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="site-header">RENT A HOBBY &nbsp;·&nbsp; BORROW. TRY. OWN.</div>
+
+<div class="page">
+
+  <h2 class="section-title" id="pageTitle">PRODUCT</h2>
+  <p class="section-sub" id="pageSub">Loading details…</p>
+
+  <!-- TOP GRID -->
+  <div class="product-layout">
+
+    <!-- IMAGE -->
+    <div class="product-img-card" id="imgCard">
+      <img id="img" src="" alt="Product Image">
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info-card">
+      <div class="product-category-tag" id="categoryTag">—</div>
+      <div class="product-name" id="name">Product Name</div>
+      <div class="product-price" id="price">$0 <span>/ day</span></div>
+
+      <ul class="features-list" id="features"></ul>
+
+      <a id="rentBtn" href="checkout.html" class="rent-btn">RENT NOW ✦</a>
+    </div>
+
+  </div>
+
+  <!-- ABOUT -->
+  <div class="about-box">
+    <div class="about-heading">ABOUT THIS ITEM ✦</div>
+    <p id="desc">No description available.</p>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="reviews-section">
+    <div class="reviews-heading">REVIEWS ✦</div>
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-name">Nehaa</div>
+        <div class="review-stars">★★★★★</div>
+        <p>Amazing experience! Totally worth it.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-name">Ashfaq</div>
+        <div class="review-stars">★★★★☆</div>
+        <p>Kozhpamilla</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-name">Devika</div>
+        <div class="review-stars">★★★★★</div>
+        <p>Good quality and smooth rental process.</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-name">Vasundhara</div>
+        <div class="review-stars">★★★★★</div>
+        <p>Adipoli.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+/* ─── READ URL PARAMS — no hardcoded defaults ─── */
+const params   = new URLSearchParams(window.location.search);
+const name     = params.get("name")     || "";
+const price    = params.get("price")    || "0";
+const imgSrc   = params.get("img")      || "";
+const descParam= params.get("desc")     || "";
+const featParam= params.get("features") || "";
+const category = params.get("category") || "";
+const emoji    = params.get("emoji")    || "";
+
+/* ─── ELEMENTS ─── */
+const imgEl      = document.getElementById("img");
+const imgCard    = document.getElementById("imgCard");
+const featureList= document.getElementById("features");
+const descEl     = document.getElementById("desc");
+
+/* ─── STATIC FIELDS (instant) ─── */
+if (name) {
+  document.title = name + " — Rent A Hobby";
+  document.getElementById("pageTitle").textContent = name.toUpperCase();
+}
+document.getElementById("pageSub").textContent =
+  (price !== "0" ? "$" + price + "/day" : "") +
+  (category ? " · " + category : "");
+document.getElementById("categoryTag").textContent = category || "Hobby";
+document.getElementById("name").textContent        = name     || "Product";
+document.getElementById("price").innerHTML =
+  "$" + parseFloat(price).toFixed(2) + ' <span>/ day</span>';
+
+/* ─── RENT BUTTON ─── */
+document.getElementById("rentBtn").href =
+  "checkout.html" +
+  "?name="     + encodeURIComponent(name) +
+  "&price="    + encodeURIComponent(price) +
+  "&category=" + encodeURIComponent(category) +
+  "&emoji="    + encodeURIComponent(emoji);
+
+/* ─── IMAGE via Unsplash API (keyword from name) ─── */
+function showPlaceholder() {
+  if (imgEl.parentNode) imgEl.remove();
+  const ph = document.createElement("div");
+  ph.className = "no-image";
+  ph.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>No Image';
+  imgCard.appendChild(ph);
+}
+
+async function loadImage() {
+  if (imgSrc) {
+    // Use provided URL directly
+    imgCard.classList.add("img-loading");
+    imgEl.onload  = () => imgCard.classList.remove("img-loading");
+    imgEl.onerror = () => { imgCard.classList.remove("img-loading"); showPlaceholder(); };
+    imgEl.src = imgSrc;
+    imgEl.alt = name;
+    return;
+  }
+
+  if (!name) { showPlaceholder(); return; }
+
+  // Ask Claude for the best Unsplash search keyword for this product
+  imgCard.classList.add("img-loading");
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 60,
+        system: "Reply with ONLY a short 2-4 word Unsplash photo search keyword for the product. No quotes, no explanation. Just the keyword. Make it specific and visual, e.g. 'acoustic guitar closeup', 'canon dslr camera', 'skateboard deck'. No generic words.",
+        messages: [{ role: "user", content: "Product: " + name }]
+      })
+    });
+    const data = await res.json();
+    const keyword = data.content?.[0]?.text?.trim() || name;
+    const encoded = encodeURIComponent(keyword);
+
+    // Try Unsplash API with the smart keyword
+    const unsplashUrl = `https://api.unsplash.com/search/photos?query=${encoded}&per_page=1&orientation=landscape&client_id=lbFVjICMXNxzLFyYD7tBswT6eJRnFtQ1s7_4lIi8BbE`;
+    const uRes  = await fetch(unsplashUrl);
+    const uData = await uRes.json();
+    const photo = uData.results?.[0]?.urls?.regular;
+
+    if (photo) {
+      imgEl.src = photo;
+      imgEl.alt = name;
+      imgEl.onload  = () => imgCard.classList.remove("img-loading");
+      imgEl.onerror = () => { imgCard.classList.remove("img-loading"); showPlaceholder(); };
+    } else {
+      imgCard.classList.remove("img-loading");
+      showPlaceholder();
+    }
+  } catch(e) {
+    imgCard.classList.remove("img-loading");
+    showPlaceholder();
+  }
+}
+
+/* ─── DESCRIPTION & FEATURES via Claude ─── */
+async function loadDetails() {
+  // If both already provided via URL params, skip API call
+  if (descParam && featParam) {
+    descEl.textContent = descParam;
+    featParam.split(",").forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = f.trim();
+      featureList.appendChild(li);
+    });
+    return;
+  }
+
+  if (!name) return;
+
+  // Show skeleton loaders
+  descEl.innerHTML = '<span style="opacity:0.4;font-style:italic">Loading description…</span>';
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 300,
+        system: `You are a product copywriter for a hobby rental platform. 
+Return ONLY valid JSON — no markdown, no backticks, no explanation.
+Format: {"desc":"2-sentence engaging description of the product for rental","features":["feature 1","feature 2","feature 3","feature 4"]}
+Features should be short, punchy specs or highlights (max 6 words each).`,
+        messages: [{ role: "user", content: "Product to describe: " + name + (category ? " (category: " + category + ")" : "") }]
+      })
+    });
+    const data = await res.json();
+    const raw  = data.content?.[0]?.text?.trim() || "{}";
+    const clean = raw.replace(/^```json|^```|```$/g, "").trim();
+    const parsed = JSON.parse(clean);
+
+    // Description
+    descEl.textContent = descParam || parsed.desc || "No description available.";
+
+    // Features
+    const feats = featParam
+      ? featParam.split(",")
+      : (parsed.features || []);
+    feats.forEach(f => {
+      const li = document.createElement("li");
+      li.textContent = f.trim();
+      featureList.appendChild(li);
+    });
+
+  } catch(e) {
+    descEl.textContent = descParam || "No description available.";
+    if (featParam) {
+      featParam.split(",").forEach(f => {
+        const li = document.createElement("li");
+        li.textContent = f.trim();
+        featureList.appendChild(li);
+      });
+    }
+  }
+}
+
+/* ─── INIT ─── */
+loadImage();
+loadDetails();
+</script>
+
+</body>
+</html>

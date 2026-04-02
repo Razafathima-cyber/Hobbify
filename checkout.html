@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rent A Hobby — Secure Your Rental</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --forest: #1E5C2A;
+  --teal: #0E7C7B;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+}
+
+/* ── HEADER STRIP ── */
+.checkout-header {
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+  padding: 1rem 2rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+}
+
+/* ── PAGE TITLE ── */
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+.section-sub {
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: var(--orange);
+  margin-bottom: 2.5rem;
+}
+
+/* ── LAYOUT ── */
+.checkout {
+  padding: 3rem 2rem 5rem;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.checkout-grid {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 760px) {
+  .checkout-grid { grid-template-columns: 1fr; }
+}
+
+/* ── FORM CARD ── */
+.checkout-card {
+  background: var(--offwhite);
+  border: 2.5px solid var(--ink);
+  padding: 2rem 2rem 2.5rem;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.checkout-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--cream);
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 1.5rem;
+}
+
+.checkout-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+@media (max-width: 500px) {
+  .checkout-row { flex-direction: column; }
+}
+
+.checkout-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.checkout-field label {
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.7;
+}
+
+.checkout-field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+}
+
+.checkout-field input:focus {
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
+}
+
+/* days row inline */
+.days-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.days-row label {
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+
+.days-row input[type="number"] {
+  width: 90px;
+  padding: 10px 12px;
+  border: 2px solid var(--ink);
+  background: var(--cream);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.days-row input[type="number"]:focus {
+  border-color: var(--red);
+  box-shadow: 3px 3px 0 var(--red);
+}
+
+.days-hint {
+  color: var(--orange);
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+}
+
+/* ── SUBMIT ── */
+.checkout-submit {
+  margin-top: 0.5rem;
+  width: 100%;
+  padding: 14px;
+  background: var(--red);
+  color: white;
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.checkout-submit:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.checkout-submit:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* ── SUMMARY SIDEBAR ── */
+.summary-card {
+  background: var(--ink);
+  color: var(--cream);
+  border: 2.5px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--mustard);
+  padding: 1.8rem;
+  position: sticky;
+  top: 1.5rem;
+}
+
+.summary-header {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--red);
+  color: white;
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 1.4rem;
+}
+
+/* Item preview */
+.item-preview {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(255,255,255,0.2);
+  margin-bottom: 1.2rem;
+}
+
+.item-icon {
+  width: 60px;
+  height: 60px;
+  background: var(--mustard);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+
+.item-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+}
+
+.item-category {
+  font-size: 0.75rem;
+  opacity: 0.55;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Lines */
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
+}
+
+.summary-line .label { opacity: 0.7; }
+
+.summary-divider {
+  border: none;
+  border-top: 1px dashed rgba(255,255,255,0.2);
+  margin: 1rem 0;
+}
+
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.summary-total .tot-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+}
+
+.summary-total .tot-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  color: var(--neon-yellow);
+  letter-spacing: 0.04em;
+}
+
+.calc-note {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  opacity: 0.55;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+/* trust badges */
+.trust-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.trust-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.08);
+  padding: 4px 8px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+/* shimmer for icon loading */
+.icon-loading {
+  background: linear-gradient(90deg, var(--mustard) 25%, #e8b820 50%, var(--mustard) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="checkout-header">RENT A HOBBY &nbsp;·&nbsp; BORROW. TRY. OWN.</div>
+
+<section class="checkout">
+  <h2 class="section-title">SECURE YOUR RENTAL</h2>
+  <p class="section-sub">You're one step away from your next obsession ✦</p>
+
+  <div class="checkout-grid">
+
+    <!-- LEFT: FORM -->
+    <form class="checkout-card" id="checkoutForm">
+      <div class="checkout-title">Booking Details</div>
+
+      <div class="checkout-row">
+        <div class="checkout-field">
+          <label>Full Name</label>
+          <input type="text" name="fullName" placeholder="Your name" required>
+        </div>
+        <div class="checkout-field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+
+      <div class="checkout-row">
+        <div class="checkout-field">
+          <label>Rental Start Date</label>
+          <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div class="checkout-field">
+          <label>Rental End Date</label>
+          <input type="date" id="endDate" name="endDate" required>
+        </div>
+      </div>
+
+      <div class="days-row">
+        <label>Number of Days:</label>
+        <input type="number" id="days" value="1" min="1">
+        <span class="days-hint" id="daysHint">← or pick dates above</span>
+      </div>
+
+      <div class="checkout-title" style="margin-top:0.5rem;">Payment</div>
+
+      <div class="checkout-row" style="margin-top:1rem;">
+        <div class="checkout-field">
+          <label>Card Number</label>
+          <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19" id="cardNum">
+        </div>
+        <div class="checkout-field">
+          <label>CVV / Expiry</label>
+          <input type="text" placeholder="CVC / MM-YY">
+        </div>
+      </div>
+
+      <button type="submit" class="checkout-submit">CONFIRM THE RENTAL →</button>
+    </form>
+
+    <!-- RIGHT: SUMMARY -->
+    <aside class="summary-card">
+      <div class="summary-header">Order Summary</div>
+
+      <div class="item-preview">
+        <div class="item-icon" id="itemIcon"></div>
+        <div>
+          <div class="item-name" id="itemName">Loading…</div>
+          <div class="item-category" id="itemCategory">—</div>
+        </div>
+      </div>
+
+      <div class="summary-line">
+        <span class="label">Daily rate</span>
+        <span id="summDailyRate">$0.00 / day</span>
+      </div>
+      <div class="summary-line">
+        <span class="label">× <span id="summDays">1</span> day(s)</span>
+        <span id="summSubtotal">$0.00</span>
+      </div>
+      <div class="summary-line">
+        <span class="label">Platform fee (5%)</span>
+        <span id="summFee">$0.00</span>
+      </div>
+      <div class="summary-line">
+        <span class="label">Damage deposit</span>
+        <span id="summDeposit">$30.00</span>
+      </div>
+
+      <hr class="summary-divider">
+
+      <div class="summary-total">
+        <span class="tot-label">TOTAL</span>
+        <span class="tot-value" id="summTotal">$0.00</span>
+      </div>
+      <p class="calc-note" id="calcNote">Enter days or pick dates to calculate</p>
+
+      <div class="trust-row">
+        <span class="trust-badge">🔒 Secure</span>
+        <span class="trust-badge">✅ Insured</span>
+        <span class="trust-badge">↩ Easy Return</span>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<script>
+/* ─── READ URL PARAMS — no hardcoded defaults ─── */
+const params       = new URLSearchParams(window.location.search);
+const itemName     = params.get("name")     || "";
+const itemCategory = params.get("category") || "";
+const dailyPrice   = parseFloat(params.get("price")) || 0;
+const DEPOSIT      = 30;
+const FEE_RATE     = 0.05;
+
+/* ─── POPULATE STATIC FIELDS ─── */
+if (itemName) document.title = "Rent A Hobby — " + itemName;
+document.getElementById("itemName").textContent      = itemName     || "Unknown Item";
+document.getElementById("itemCategory").textContent  = itemCategory || "—";
+document.getElementById("summDailyRate").textContent = "$" + dailyPrice.toFixed(2) + " / day";
+
+/* ─── SIDEBAR IMAGE via Unsplash ─── */
+async function loadSidebarImage() {
+  const iconEl = document.getElementById("itemIcon");
+  if (!itemName) {
+    iconEl.textContent = "?";
+    return;
+  }
+
+  iconEl.classList.add("icon-loading");
+
+  try {
+    // Step 1: Ask Claude for the best search keyword
+    const aiRes = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 40,
+        system: "Reply with ONLY a short 2-4 word Unsplash photo search keyword for the product. No quotes, no explanation. Make it specific and visual.",
+        messages: [{ role: "user", content: "Product: " + itemName }]
+      })
+    });
+    const aiData  = await aiRes.json();
+    const keyword = aiData.content?.[0]?.text?.trim() || itemName;
+
+    // Step 2: Fetch from Unsplash
+    const uRes  = await fetch(
+      "https://api.unsplash.com/search/photos?query=" +
+      encodeURIComponent(keyword) +
+      "&per_page=1&orientation=squarish&client_id=lbFVjICMXNxzLFyYD7tBswT6eJRnFtQ1s7_4lIi8BbE"
+    );
+    const uData = await uRes.json();
+    const photo = uData.results?.[0]?.urls?.thumb;
+
+    iconEl.classList.remove("icon-loading");
+
+    if (photo) {
+      iconEl.innerHTML = "";
+      iconEl.style.padding = "0";
+      const img = document.createElement("img");
+      img.src   = photo;
+      img.alt   = itemName;
+      img.style.cssText = "width:100%;height:100%;object-fit:cover;display:block;";
+      iconEl.appendChild(img);
+    } else {
+      iconEl.textContent = itemName.charAt(0).toUpperCase();
+    }
+  } catch(e) {
+    const iconEl2 = document.getElementById("itemIcon");
+    iconEl2.classList.remove("icon-loading");
+    iconEl2.textContent = itemName ? itemName.charAt(0).toUpperCase() : "?";
+  }
+}
+
+loadSidebarImage();
+
+/* ─── CALCULATOR ─── */
+const daysInput  = document.getElementById("days");
+const startInput = document.getElementById("startDate");
+const endInput   = document.getElementById("endDate");
+
+function updateSummary(days) {
+  if (!days || days < 1) days = 1;
+  const subtotal = dailyPrice * days;
+  const fee      = subtotal * FEE_RATE;
+  const total    = subtotal + fee + DEPOSIT;
+  document.getElementById("summDays").textContent     = days;
+  document.getElementById("summSubtotal").textContent = "$" + subtotal.toFixed(2);
+  document.getElementById("summFee").textContent      = "$" + fee.toFixed(2);
+  document.getElementById("summTotal").textContent    = "$" + total.toFixed(2);
+  document.getElementById("calcNote").textContent     =
+    "$" + dailyPrice.toFixed(2) + " x " + days + "d + 5% + $" + DEPOSIT + " deposit";
+}
+
+daysInput.addEventListener("input", () => {
+  let d = parseInt(daysInput.value);
+  if (isNaN(d) || d < 1) { d = 1; daysInput.value = 1; }
+  startInput.value = "";
+  endInput.value   = "";
+  document.getElementById("daysHint").textContent = "← or pick dates above";
+  updateSummary(d);
+});
+
+function syncDatesFromPicker() {
+  const s = startInput.value;
+  const e = endInput.value;
+  if (!s || !e) return;
+  const diff = Math.round((new Date(e) - new Date(s)) / (1000 * 60 * 60 * 24));
+  if (diff <= 0) {
+    document.getElementById("daysHint").textContent = "⚠ End must be after start";
+    return;
+  }
+  daysInput.value = diff;
+  document.getElementById("daysHint").textContent = "= " + diff + " day(s) from dates";
+  updateSummary(diff);
+}
+
+startInput.addEventListener("change", syncDatesFromPicker);
+endInput.addEventListener("change",   syncDatesFromPicker);
+
+/* ─── CARD NUMBER FORMATTING ─── */
+document.getElementById("cardNum").addEventListener("input", function() {
+  this.value = this.value.replace(/\D/g, "").replace(/(.{4})/g, "$1 ").trim().slice(0, 19);
+});
+
+/* ─── INIT ─── */
+updateSummary(parseInt(daysInput.value) || 1);
+
+/* ─── SUBMIT → redirect to order-confirmation.html with all params ─── */
+document.getElementById("checkoutForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const fullName  = document.querySelector('[name="fullName"]').value.trim();
+  const email     = document.querySelector('[name="email"]').value.trim();
+  const days      = parseInt(document.getElementById("days").value) || 1;
+  const startDate = document.getElementById("startDate").value;
+  const endDate   = document.getElementById("endDate").value;
+  const emoji     = params.get("emoji") || "";
+
+  const url = "page1.html" +
+    "?name="      + encodeURIComponent(itemName) +
+    "&price="     + encodeURIComponent(dailyPrice) +
+    "&category="  + encodeURIComponent(itemCategory) +
+    "&emoji="     + encodeURIComponent(emoji) +
+    "&days="      + encodeURIComponent(days) +
+    "&start="     + encodeURIComponent(startDate) +
+    "&end="       + encodeURIComponent(endDate) +
+    "&name_user=" + encodeURIComponent(fullName) +
+    "&email="     + encodeURIComponent(email);
+
+  window.location.href = url;
+});
+</script>
+
+</body>
+</html>
