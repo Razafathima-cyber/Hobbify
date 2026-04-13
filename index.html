@@ -15,17 +15,18 @@
   }
 
   video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  video {
+    width: 100vw;
+    height: 100vh;
     object-fit: cover;
   }
-}
-}
+
+  @media (max-width: 768px) {
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 </style>
 </head>
 
@@ -39,7 +40,7 @@
   const video = document.getElementById("introVideo");
 
   let loops = 0;
-  const maxLoops = 2; // change how many times it loops
+  const maxLoops = 1; // reduced loop for faster transition
 
   video.addEventListener("ended", () => {
     loops++;
@@ -48,7 +49,7 @@
       video.currentTime = 0;
       video.play();
     } else {
-      window.location.href = "login.html"; // next page
+      window.location.href = "login.html";
     }
   });
 </script>
