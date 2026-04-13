@@ -5,169 +5,1729 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hobbify — Borrow. Try. Own.</title>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
-
 <style>
-:root {
-  --red: #D92B1A;
-  --orange: #C85A1A;
-  --mustard: #D4A017;
-  --cobalt: #1A3A8F;
-  --forest: #1E5C2A;
-  --teal: #0E7C7B;
-  --cream: #F5EDD8;
-  --offwhite: #FAF6EE;
-  --ink: #1A1208;
-  --paper: #EDE3C8;
-  --neon-yellow: #F0E040;
-}
+  :root {
+    --red: #D92B1A;
+    --orange: #C85A1A;
+    --mustard: #D4A017;
+    --cobalt: #1A3A8F;
+    --forest: #1E5C2A;
+    --teal: #0E7C7B;
+    --cream: #F5EDD8;
+    --offwhite: #FAF6EE;
+    --ink: #1A1208;
+    --paper: #EDE3C8;
+    --neon-yellow: #F0E040;
+  }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Nunito', sans-serif;
-  overflow-x: hidden;
-}
-
-/* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background: var(--ink);
-  border-bottom: 3px solid var(--red);
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 58px;
-}
-
-.nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  color: var(--mustard);
-  letter-spacing: 2px;
-  text-decoration: none;
-}
-
-.nav-logo span { color: var(--red); }
-
-/* ✅ FIXED NAV */
-.nav-links {
-  display: flex;
-  gap: 2rem;
-  list-style: none;
-  align-items: center;
-}
-
-.nav-links a {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--offwhite);
-  text-decoration: none;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.nav-cta {
-  background: var(--red);
-  color: var(--offwhite) !important;
-  padding: 6px 16px;
-  border: 2px solid var(--offwhite);
-}
-
-/* ===== YOUR ENTIRE ORIGINAL CSS CONTINUES EXACTLY SAME BELOW ===== */
-/* (I did not touch anything else) */
-
-
-/* ========================= */
-/* ===== MOBILE FIX ===== */
-/* ========================= */
-
-@media (max-width: 768px) {
+  html { scroll-behavior: smooth; }
 
   body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Nunito', sans-serif;
     overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%23D92B1A' stroke-width='2'/%3E%3Ccircle cx='10' cy='10' r='2' fill='%23D92B1A'/%3E%3C/svg%3E") 10 10, auto;
   }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--ink);
+    border-bottom: 3px solid var(--red);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 58px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--mustard);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--red); }
 
   .nav-links {
-    display: none;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
   }
 
-  .hero {
-    padding-top: 70px;
-    align-items: flex-start;
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--offwhite);
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
   }
+
+  .nav-links a:hover { color: var(--mustard); }
+
+  .nav-cta {
+    background: var(--red);
+    color: var(--offwhite) !important;
+    padding: 6px 16px;
+    border: 2px solid var(--offwhite);
+    transition: all 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    background: var(--mustard) !important;
+    color: var(--ink) !important;
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 var(--offwhite);
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding-top: 58px;
+  }
+
+  /* Sunburst */
+  .sunburst {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    animation: spin-slow 40s linear infinite;
+  }
+
+  @keyframes spin-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  /* BG tape strips */
+  .tape-strip {
+    position: absolute;
+    height: 32px;
+    background: var(--mustard);
+    opacity: 0.15;
+    transform-origin: center;
+  }
+
+  .tape-strip:nth-child(1) { width: 140%; top: 20%; left: -20%; transform: rotate(-3deg); }
+  .tape-strip:nth-child(2) { width: 140%; top: 55%; left: -20%; transform: rotate(2deg); background: var(--red); }
+  .tape-strip:nth-child(3) { width: 140%; top: 80%; left: -20%; transform: rotate(-1.5deg); background: var(--teal); }
 
   .hero-content {
-    padding: 1.5rem 1rem;
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Caveat', cursive;
+    font-size: 1.3rem;
+    color: var(--teal);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.5rem;
+    animation: fadeSlideUp 0.8s ease both;
   }
 
   .hero-title {
-    font-size: clamp(3rem, 10vw, 4.5rem);
-    line-height: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 14vw, 12rem);
+    line-height: 0.9;
+    color: var(--offwhite);
+    letter-spacing: -2px;
+    animation: fadeSlideUp 0.9s ease 0.1s both;
   }
 
+  .hero-title .accent-red { color: var(--red); }
+  .hero-title .accent-mustard { color: var(--mustard); }
+  .hero-title .accent-teal { color: var(--teal); }
+
   .hero-sub {
-    font-size: 1rem;
-    max-width: 100%;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.25rem;
+    color: var(--paper);
+    max-width: 500px;
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    animation: fadeSlideUp 1s ease 0.2s both;
   }
 
   .hero-ctas {
-    flex-direction: column;
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    animation: fadeSlideUp 1.1s ease 0.3s both;
   }
 
   .btn-sticker {
-    width: 100%;
-    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 14px 32px;
+    border: 3px solid;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s;
+    position: relative;
   }
 
-  .float-vinyl,
-  .float-cassette,
+  .btn-sticker::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    z-index: -1;
+    transform: translate(4px, 4px);
+    opacity: 0.3;
+  }
+
+  .btn-primary {
+    background: var(--red);
+    color: var(--offwhite);
+    border-color: var(--offwhite);
+    box-shadow: 5px 5px 0 var(--mustard);
+  }
+
+  .btn-primary:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--mustard);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--mustard);
+    border-color: var(--mustard);
+    box-shadow: 5px 5px 0 var(--red);
+  }
+
+  .btn-secondary:hover {
+    background: var(--mustard);
+    color: var(--ink);
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--red);
+  }
+
+  /* Floating elements in hero */
+  .float-vinyl {
+    position: absolute;
+    right: 8%;
+    top: 15%;
+    width: 220px;
+    height: 220px;
+    animation: float-bounce 6s ease-in-out infinite, spin-slow 20s linear infinite;
+  }
+
+  .float-cassette {
+    position: absolute;
+    right: 22%;
+    bottom: 18%;
+    width: 160px;
+    animation: float-bounce 5s ease-in-out 1s infinite;
+  }
+
   .price-sticker-hero {
-    display: none;
+    position: absolute;
+    right: 6%;
+    bottom: 25%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    background: var(--neon-yellow);
+    color: var(--ink);
+    padding: 8px 12px;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.1;
+    border: 2px solid var(--ink);
+    box-shadow: 3px 3px 0 var(--ink);
+    transform: rotate(12deg);
+    animation: float-bounce 4s ease-in-out 0.5s infinite;
   }
 
-  .products-grid {
-    grid-template-columns: 1fr;
+  @keyframes float-bounce {
+    0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50% { transform: translateY(-15px) rotate(var(--rot, 0deg)); }
   }
 
-  .chat-preview-inner {
-    grid-template-columns: 1fr;
+  /* MARQUEE TICKER */
+  .ticker {
+    background: var(--red);
+    color: var(--offwhite);
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
   }
 
-  .footer-inner {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .hero-title {
-    font-size: 2.8rem;
+  .ticker-inner {
+    display: flex;
+    gap: 0;
+    animation: ticker 22s linear infinite;
+    white-space: nowrap;
   }
 
-  .hero-sub {
-    font-size: 0.95rem;
+  .ticker-item {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0 3rem;
+    flex-shrink: 0;
+  }
+
+  .ticker-item::before {
+    content: '★ ';
+    color: var(--mustard);
+  }
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* SECTION COMMON */
+  section { position: relative; }
+
+  .section-label {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    color: var(--red);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.3rem;
   }
 
   .section-title {
-    font-size: 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: 1px;
   }
+
+  /* CATEGORIES */
+  .categories {
+    background: var(--offwhite);
+    padding: 5rem 2rem;
+    position: relative;
+  }
+
+  .categories::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--ink) 0, var(--ink) 20px, var(--mustard) 20px, var(--mustard) 40px);
+  }
+
+  .categories-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .categories-header {
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .cat-card {
+    border: 3px solid var(--ink);
+    padding: 2rem 1.5rem;
+    background: var(--cream);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    overflow: hidden;
+  }
+
+  .cat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cat-color, var(--red));
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .cat-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 7px 7px 0 var(--ink);
+  }
+
+  .cat-card:hover::before { transform: translateY(0); }
+  .cat-card:hover .cat-name { color: var(--offwhite); }
+  .cat-card:hover .cat-icon { filter: brightness(0) invert(1); }
+
+  .cat-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.2s;
+  }
+
+  .cat-count {
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    color: var(--teal);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FEATURED LISTINGS */
+  .listings {
+    background: var(--ink);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .listings-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 30vw;
+    color: rgba(255,255,255,0.02);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .listings-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .listings-header .section-title { color: var(--offwhite); }
+  .listings-header .section-label { color: var(--teal); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.8rem;
+    margin-top: 3rem;
+  }
+
+  .product-card {
+    background: var(--cream);
+    border: 3px solid var(--offwhite);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+    overflow: hidden;
+  }
+  
+  .product-card:nth-child(odd) { transform: rotate(-1.5deg); }
+  .product-card:nth-child(even) { transform: rotate(1deg); }
+
+  .product-card:hover {
+    transform: rotate(0) translateY(-10px) scale(1.02) !important;
+    box-shadow: 10px 10px 0 var(--mustard);
+    z-index: 10;
+  }
+
+  .product-img {
+    height: 200px;
+    background: var(--cobalt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+
+  }
+
+  .product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
+  .product-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.2));
+  }
+
+  .tape-corner {
+    position: absolute;
+    top: -5px;
+    right: 20px;
+    width: 50px;
+    height: 20px;
+    background: rgba(212, 160, 23, 0.7);
+    z-index: 5;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+
+  .price-badge {
+    position: absolute;
+    top: 15px;
+    left: -5px;
+    background: var(--red);
+    color: var(--offwhite);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    padding: 4px 14px 4px 12px;
+    border: 2px solid var(--ink);
+    z-index: 5;
+  }
+
+  .price-badge::after {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 0;
+    bottom: 0;
+    border-style: solid;
+    border-width: 14px 0 14px 8px;
+    border-color: transparent transparent transparent var(--red);
+  }
+
+  .try-label {
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    background: var(--neon-yellow);
+    color: var(--ink);
+    font-family: 'Caveat', cursive;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border: 2px solid var(--ink);
+    transform: rotate(3deg);
+  }
+
+  .product-info {
+    padding: 1rem 1.2rem 1.5rem;
+  }
+
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+
+  .product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+  }
+
+  .product-owner {
+    font-family: 'Caveat', cursive;
+    font-size: 0.95rem;
+    color: var(--teal);
+  }
+
+  .product-rating {
+    font-size: 0.8rem;
+    color: var(--mustard);
+    letter-spacing: 1px;
+  }
+
+  .product-days {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 0.3rem;
+  }
+
+  /* HOW IT WORKS */
+  .how-it-works {
+    background: var(--mustard);
+    padding: 5rem 2rem;
+    position: relative;
+    border-top: 4px solid var(--ink);
+    border-bottom: 4px solid var(--ink);
+  }
+
+  .how-it-works-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .step-card {
+    background: var(--offwhite);
+    border: 3px solid var(--ink);
+    padding: 2rem;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+
+  .step-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .step-sticker {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background: var(--cobalt);
+    color: var(--offwhite);
+    font-family: 'Caveat', cursive;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border: 2px solid var(--ink);
+    transform: rotate(6deg);
+  }
+
+  /* CHAT PAGE PREVIEW */
+  .chat-preview {
+    background: var(--paper);
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chat-preview-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .chat-window {
+    background: var(--ink);
+    border: 3px solid var(--ink);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 8px 8px 0 var(--red);
+  }
+
+  .chat-header {
+    background: var(--cobalt);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .chat-avatar {
+    width: 36px;
+    height: 36px;
+    background: var(--mustard);
+    border: 2px solid var(--offwhite);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .chat-user-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    color: var(--offwhite);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .chat-status {
+    font-family: 'Caveat', cursive;
+    color: var(--teal);
+    font-size: 0.85rem;
+  }
+
+  .chat-body {
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    background: #1f1810;
+  }
+
+  .msg {
+    max-width: 75%;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .msg-received {
+    background: var(--mustard);
+    color: var(--ink);
+    align-self: flex-start;
+    border-color: var(--ink);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .msg-sent {
+    background: var(--red);
+    color: var(--offwhite);
+    align-self: flex-end;
+    border-color: var(--offwhite);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .msg-teal {
+    background: var(--teal);
+    color: var(--offwhite);
+    align-self: flex-start;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .chat-input-area {
+    border-top: 2px solid var(--cobalt);
+    padding: 0.8rem 1rem;
+    display: flex;
+    gap: 0.6rem;
+    background: #17110a;
+  }
+
+  .chat-input-field {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border: 2px solid var(--cobalt);
+    color: var(--offwhite);
+    padding: 0.5rem 0.8rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+  }
+
+  .chat-send-btn {
+    background: var(--red);
+    color: var(--offwhite);
+    border: 2px solid var(--offwhite);
+    padding: 0.5rem 1rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+
+  .chat-send-btn:hover {
+    background: var(--mustard);
+    color: var(--ink);
+    transform: translateY(-2px);
+  }
+
+  /* CHECKOUT SECTION */
+  .checkout {
+    background: var(--offwhite);
+    padding: 5rem 2rem;
+    border-top: 4px solid var(--ink);
+  }
+
+  .checkout-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .checkout-card {
+    background: white;
+    border: 3px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--cobalt);
+    padding: 3rem;
+  }
+
+  .checkout-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--red);
+    padding-bottom: 0.8rem;
+  }
+
+  .checkout-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .checkout-field label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #555;
+  }
+
+  .checkout-field input {
+    width: 100%;
+    border: 2px solid var(--ink);
+    padding: 0.7rem 1rem;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    background: var(--cream);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .checkout-field input:focus {
+    border-color: var(--cobalt);
+    box-shadow: 3px 3px 0 var(--cobalt);
+  }
+
+  .checkout-summary {
+    background: var(--ink);
+    color: var(--offwhite);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border: 2px solid var(--offwhite);
+  }
+
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .summary-line:last-child {
+    border-bottom: none;
+    font-size: 1.4rem;
+    color: var(--mustard);
+    padding-top: 0.8rem;
+  }
+
+  .checkout-submit {
+    width: 100%;
+    background: var(--red);
+    color: var(--offwhite);
+    border: 3px solid var(--ink);
+    padding: 1.1rem 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+
+  .checkout-submit:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 var(--ink);
+    background: var(--forest);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: var(--offwhite);
+    padding: 4rem 2rem 2rem;
+    border-top: 4px solid var(--red);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-bg-text {
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    color: rgba(255,255,255,0.025);
+    user-select: none;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--mustard);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .footer-logo span { color: var(--red); }
+
+  .footer-tagline {
+    font-family: 'Caveat', cursive;
+    font-size: 1.1rem;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .social-btn {
+    width: 38px;
+    height: 38px;
+    background: transparent;
+    border: 2px solid var(--offwhite);
+    color: var(--offwhite);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .social-btn:hover {
+    background: var(--red);
+    border-color: var(--red);
+    transform: translateY(-3px);
+  }
+
+  .footer-heading {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--mustard);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .footer-links a:hover { color: var(--offwhite); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-bottom p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .footer-badge {
+    font-family: 'Caveat', cursive;
+    font-size: 0.9rem;
+    color: var(--teal);
+    letter-spacing: 1px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* BANDS / SEPARATORS */
+  .band {
+    height: 16px;
+    background: repeating-linear-gradient(90deg,
+      var(--red) 0, var(--red) 25px,
+      var(--mustard) 25px, var(--mustard) 50px,
+      var(--cobalt) 50px, var(--cobalt) 75px,
+      var(--forest) 75px, var(--forest) 100px
+    );
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+
+  /* TRUST STRIP */
+  .trust-strip {
+    background: var(--forest);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .trust-item {
+    text-align: center;
+    color: var(--offwhite);
+  }
+
+  .trust-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--neon-yellow);
+    display: block;
+    line-height: 1;
+  }
+
+  .trust-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+
+  /* SVG SUNBURST */
+  svg.sunburst-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 900px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: 1fr; }
+    .chat-preview-inner { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: 5rem; }
+    .float-vinyl, .float-cassette { display: none; }
+    .checkout-row { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
 </style>
 </head>
-
 <body>
 
-<!-- KEEP YOUR ENTIRE HTML EXACTLY SAME HERE -->
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">HOBB<span>I</span>FY</a>
+  <ul class="nav-links">
+    <li><a href="#listings">Browse</a></li>
+     <li><a href="profile.html">Profile</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="message.html">Inbox</a></li>
+    <li><a href="#checkout">Checkout</a></li>
+    <li><a href="listing.html" class="nav-cta">List Yours</a></li>
+  </ul>
+</nav>
 
+<!-- HERO -->
+<section class="hero">
+  <!-- Tape strips -->
+  <div class="tape-strip"></div>
+  <div class="tape-strip"></div>
+  <div class="tape-strip"></div>
+
+  <!-- Sunburst SVG -->
+  <div class="sunburst">
+    <svg class="sunburst-svg" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(350,350)">
+        <!-- Rays -->
+        <g fill="none" stroke="#D4A017" stroke-width="2" opacity="0.3">
+          <line x1="0" y1="-340" x2="0" y2="-280"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(12)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(24)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(36)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(48)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(60)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(72)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(84)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(96)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(108)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(120)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(132)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(144)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(156)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(168)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(180)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(192)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(204)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(216)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(228)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(240)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(252)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(264)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(276)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(288)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(300)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(312)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(324)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(336)"/>
+          <line x1="0" y1="-340" x2="0" y2="-280" transform="rotate(348)"/>
+        </g>
+        <!-- Outer ring -->
+        <circle r="310" fill="none" stroke="#D92B1A" stroke-width="2" opacity="0.2"/>
+        <circle r="270" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.15"/>
+        <circle r="230" fill="none" stroke="#1A3A8F" stroke-width="1" opacity="0.15"/>
+        <!-- Triangular rays -->
+        <g opacity="0.1" fill="#D4A017">
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(0)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(30)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(60)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(90)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(120)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(150)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(180)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(210)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(240)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(270)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(300)"/>
+          <polygon points="0,-250 -18,-120 18,-120" transform="rotate(330)"/>
+        </g>
+        <!-- Center circle -->
+        <circle r="80" fill="#D92B1A" opacity="0.15"/>
+        <circle r="50" fill="#D4A017" opacity="0.1"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Floating vinyl -->
+  <div class="float-vinyl">
+    <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="110" cy="110" r="105" fill="#1A1208" stroke="#D4A017" stroke-width="2"/>
+      <circle cx="110" cy="110" r="85" fill="none" stroke="#333" stroke-width="1.5"/>
+      <circle cx="110" cy="110" r="65" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="110" cy="110" r="45" fill="none" stroke="#333" stroke-width="1"/>
+      <circle cx="110" cy="110" r="25" fill="#D92B1A"/>
+      <circle cx="110" cy="110" r="8" fill="#1A1208"/>
+      <text x="110" y="115" text-anchor="middle" font-family="Bebas Neue" font-size="7" fill="#F5EDD8" letter-spacing="1"> HOBBIFY</text>
+    </svg>
+  </div>
+
+  <!-- Floating cassette -->
+  <div class="float-cassette" style="--rot: -8deg">
+    <svg viewBox="0 0 160 95" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="95" rx="6" fill="#1A3A8F" stroke="#F5EDD8" stroke-width="2.5"/>
+      <rect x="12" y="12" width="136" height="35" rx="3" fill="#0d2060"/>
+      <circle cx="45" cy="65" r="14" fill="#1A1208" stroke="#D4A017" stroke-width="2"/>
+      <circle cx="115" cy="65" r="14" fill="#1A1208" stroke="#D4A017" stroke-width="2"/>
+      <circle cx="45" cy="65" r="5" fill="#D4A017"/>
+      <circle cx="115" cy="65" r="5" fill="#D4A017"/>
+      <rect x="62" y="54" width="36" height="22" rx="2" fill="#D92B1A"/>
+      <text x="80" y="69" text-anchor="middle" font-family="Bebas Neue" font-size="8" fill="white">SIDE A</text>
+      <text x="80" y="28" text-anchor="middle" font-family="Bebas Neue" font-size="10" fill="#D4A017" letter-spacing="2">YOUR HOBBIES</text>
+    </svg>
+  </div>
+
+  <!-- Price sticker -->
+  <div class="price-sticker-hero">
+    <span style="font-size:1.6rem">10%</span>
+    <span style="font-size:0.6rem;font-family:'Caveat',cursive">try it!</span>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">✦ Peer-to-peer hobby marketplace ✦</span>
+    <h1 class="hero-title">
+      <span class="accent-mustard">Borrow.</span><br>
+      <span>Try.</span><br>
+      <span class="accent-red">Own.</span>
+    </h1>
+    <p class="hero-sub">Rent instruments, cameras, vinyl players, skateboards, art supplies & more — from real people, for real cheap.</p>
+    <div class="hero-ctas">
+      <a href="#listings" class="btn-sticker btn-primary">Find Your Next Obsession</a>
+      <a href="#" class="btn-sticker btn-secondary">Put Your Passion On The Board</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">Guitars</span>
+    <span class="ticker-item">Film Cameras</span>
+    <span class="ticker-item">Vinyl Players</span>
+    <span class="ticker-item">Skateboards</span>
+    <span class="ticker-item">Art Supplies</span>
+    <span class="ticker-item">Collectibles</span>
+    <span class="ticker-item">Synthesizers</span>
+    <span class="ticker-item">Pottery Kits</span>
+    <span class="ticker-item">Telescopes</span>
+    <span class="ticker-item">DJ Gear</span>
+    <span class="ticker-item">Guitars</span>
+    <span class="ticker-item">Film Cameras</span>
+    <span class="ticker-item">Vinyl Players</span>
+    <span class="ticker-item">Skateboards</span>
+    <span class="ticker-item">Art Supplies</span>
+    <span class="ticker-item">Collectibles</span>
+    <span class="ticker-item">Synthesizers</span>
+    <span class="ticker-item">Pottery Kits</span>
+    <span class="ticker-item">Telescopes</span>
+    <span class="ticker-item">DJ Gear</span>
+  </div>
+</div>
+
+<!-- TRUST -->
+<div class="trust-strip fade-in">
+  <div class="trust-item">
+    <span class="trust-num">48K+</span>
+    <span class="trust-label">Active Lenders</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">200+</span>
+    <span class="trust-label">Hobby Categories</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">$12</span>
+    <span class="trust-label">Avg. Daily Rate</span>
+  </div>
+  <div class="trust-item">
+    <span class="trust-num">4.9★</span>
+    <span class="trust-label">Community Rating</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="categories" id="browse">
+  <div class="categories-inner">
+    <div class="categories-header fade-in">
+      <div>
+        <span class="section-label">// Browse The Board</span>
+        <h2 class="section-title">WHAT'S YOUR<br>OBSESSION?</h2>
+      </div>
+      <a href="#" class="btn-sticker btn-primary" style="align-self:flex-end">See All Hobbies</a>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card fade-in" style="--cat-color: #D92B1A">
+        <span class="cat-icon">🎸</span>
+        <div class="cat-name">Music & Sound</div>
+        <div class="cat-count">1,240 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #1A3A8F">
+        <span class="cat-icon">📷</span>
+        <div class="cat-name">Photography</div>
+        <div class="cat-count">840 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #1E5C2A">
+        <span class="cat-icon">🛹</span>
+        <div class="cat-name">Street & Skate</div>
+        <div class="cat-count">390 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #0E7C7B">
+        <span class="cat-icon">🎨</span>
+        <div class="cat-name">Art & Making</div>
+        <div class="cat-count">670 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #C85A1A">
+        <span class="cat-icon">🎮</span>
+        <div class="cat-name">Retro & Collect</div>
+        <div class="cat-count">1,100 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #D4A017">
+        <span class="cat-icon">💿</span>
+        <div class="cat-name">Vinyl & Audio</div>
+        <div class="cat-count">520 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #D92B1A">
+        <span class="cat-icon">🔭</span>
+        <div class="cat-name">Outdoors & Science</div>
+        <div class="cat-count">290 items</div>
+      </div>
+      <div class="cat-card fade-in" style="--cat-color: #1A3A8F">
+        <span class="cat-icon">🧶</span>
+        <div class="cat-name">Craft & Textile</div>
+        <div class="cat-count">450 items</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band"></div>
+
+<!-- FEATURED LISTINGS -->
+<section class="listings" id="listings">
+  <div class="listings-bg-text">RENT</div>
+  <div class="listings-inner">
+    <div class="listings-header fade-in">
+      <span class="section-label">// Hot Right Now</span>
+      <h2 class="section-title" style="color:var(--offwhite)">FRESH ON<br>THE WALL</h2>
+    </div>
+  <style>
+.product-img {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ddd;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-card {
+  cursor: pointer;
+}
+</style>
+
+<!-- PRODUCTS GRID -->
+<div class="products-grid">
+
+  <!-- 🎸 GUITAR -->
+  <div class="product-card fade-in"
+       onclick="window.location.href='product.html?name=Fender%20Stratocaster&price=18&img=https://images.unsplash.com/photo-1510915228340-29c85a43dcfe&desc=Classic%2072%20Stratocaster%20with%20warm%20vintage%20tone.'">
+
+    <div class="product-img">
+      <img src="guitarr.jpg" alt="Guitar">
+    </div>
+    <div class="tape-corner"></div>
+    <div class="price-badge">$18/day</div>
+    <div class="try-label">Try for 10%</div>
+
+    <div class="product-info"> 
+      <div class="product-name">Fender Stratocaster '72</div>
+      <div class="product-days">Available 3–7 days · 2km away</div>
+
+      <div class="product-meta">
+        <span class="product-owner">✦ by Raza Fathima</span>
+        <span class="product-rating">★★★★★</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 📷 CAMERA -->
+ <div class="product-card fade-in"
+     onclick="window.location.href='product.html?name=Pentax%20K1000&price=24&img=Pent.jpg'">
+
+  <div class="product-img">
+    <img src="Pent.jpg" alt="Pentax K1000 Camera">
+  </div>
+
+  <div class="tape-corner"></div>
+  <div class="price-badge">$24/day</div>
+  <div class="try-label">Try for 10%</div>
+
+  <div class="product-info">
+    <div class="product-name">Pentax K1000</div>
+    <div class="product-days">Available 2–5 days · 5km away</div>
+
+    <div class="product-meta">
+      <span class="product-owner">✦ by Fathima Yoonus</span>
+      <span class="product-rating">★★★★☆</span>
+    </div>
+  </div>
+</div>
+
+  <!-- 💿 TURNTABLE -->
+  <div class="product-card fade-in"
+       onclick="window.location.href='product.html?name=Technics%20SL1200&price=15&img=https://images.unsplash.com/photo-1511379938547-c1f69419868d&desc=Professional%20DJ%20turntable.'">
+
+    <div class="product-img">
+      <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d" alt="Turntable">
+    </div>
+    <div class="tape-corner"></div>
+    <div class="price-badge">$15/day</div>
+    <div class="try-label">Try for 10%</div>
+
+    <div class="product-info">
+      <div class="product-name">Technics SL1200</div>
+      <div class="product-days">Available 4–10 days · 3km away</div>
+
+      <div class="product-meta">
+        <span class="product-owner">✦ by Hamida Nasrin</span>
+        <span class="product-rating">★★★★★</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🛹 SKATEBOARD -->
+  <div class="product-card fade-in"
+       onclick="window.location.href='product.html?name=Powell%20Deck&price=8&img=https://images.unsplash.com/photo-1520975922203-bbe1a48d3c9d&desc=Street-ready%20skateboard.'">
+
+    <div class="product-img">
+      <img src="https://images.unsplash.com/photo-1520975922203-bbe1a48d3c9d" alt="Skateboard">
+    </div>
+    <div class="tape-corner"></div>
+    <div class="price-badge">$8/day</div>
+    <div class="try-label">Try for 10%</div>
+
+    <div class="product-info">
+      <div class="product-name">Powell Deck</div>
+      <div class="product-days">Available 1–3 days · 1km away</div>
+
+      <div class="product-meta">
+        <span class="product-owner">✦ by Fathima Minnas</span>
+        <span class="product-rating">★★★★☆</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="how-it-works-inner">
+    <div class="fade-in">
+      <span class="section-label" style="color:var(--ink)">// The Play</span>
+      <h2 class="section-title">HOW THE<br>GAME WORKS</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-in">
+        <span class="step-number">01</span>
+        <div class="step-title">Find Your Thing</div>
+        <p class="step-desc">Browse 200+ categories of real gear from real people in your area. Instruments, cameras, skate decks, whatever lights you up.</p>
+        <div class="step-sticker">Browse Free</div>
+      </div>
+      <div class="step-card fade-in">
+        <span class="step-number">02</span>
+        <div class="step-title">Hit Them Up</div>
+        <p class="step-desc">Message the lender direct. No middleman, no corporate script. Agree on dates, do a quick check-in, and you're sorted.</p>
+        <div class="step-sticker">Real People</div>
+      </div>
+      <div class="step-card fade-in">
+        <span class="step-number">03</span>
+        <div class="step-title">Live the Obsession</div>
+        <p class="step-desc">Pick it up, go deep, see if it sticks. If you love it, you can buy it for 10% of what you've paid. No commitment required.</p>
+        <div class="step-sticker">Try B4 Buy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="band"></div>
+
+<!-- CHAT PREVIEW -->
+<section class="chat-preview" id="chat">
+  <div class="chat-preview-inner">
+    <div class="fade-in">
+      <span class="section-label">// Inbox</span>
+      <h2 class="section-title">TALK TO THE<br>LENDER.<br>KEEP IT REAL.</h2>
+      <p style="margin-top:1rem; line-height:1.7; max-width:380px; color:#444;">No ticket systems. No bots. Direct peer-to-peer messaging so you can ask the stuff that actually matters before you commit.</p>
+      <a href="#" class="btn-sticker btn-primary" style="margin-top:2rem; display:inline-block">Open Your Inbox</a>
+    </div>
+
+    <div class="chat-window fade-in">
+      <div class="chat-header">
+        <div class="chat-avatar">🎸</div>
+        <div>
+          <div class="chat-user-name">Raza Fathima — Fender Strat</div>
+          <div class="chat-status">✦ Offline</div>
+        </div>
+      </div>
+      <div class="chat-body">
+        <div class="msg msg-received">
+          Hey! Yeah the Strat is totally available this weekend. It's set up in standard E, comes with a soft case and a spare set of D'Addarios.
+        </div>
+        <div class="msg msg-sent">
+          Perfect. I play blues so that setup works great. Can I pick it up Saturday morning?
+        </div>
+        <div class="msg msg-teal">
+          Of course — I'm in Shoreditch. Let's say 10am? I'll show you the quirks of the neck pickup, it's got some character 😄
+        </div>
+        <div class="msg msg-sent">
+          That's ideal. Booking for 3 days — confirmed?
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input class="chat-input-field" type="text" placeholder="Type your message...">
+        <button class="chat-send-btn">Send ✦</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-bg-text">RAH</div>
+  <div class="footer-inner">
+    <div>
+      <span class="footer-logo">RENT<span>A</span>HOBBY</span>
+      <div class="footer-tagline">Borrow. Try. Own. Repeat.</div>
+      <p style="font-size:0.9rem; color:rgba(255,255,255,0.5); max-width:280px; line-height:1.7; margin-bottom:1.5rem;">A peer-to-peer marketplace for creative gear. No warehouses. No corporations. Just real people sharing their passions.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn">ig</a>
+        <a href="#" class="social-btn">tw</a>
+        <a href="#" class="social-btn">tt</a>
+        <a href="#" class="social-btn">yt</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Browse</div>
+      <ul class="footer-links">
+        <li><a href="#">All Categories</a></li>
+        <li><a href="#">Music & Sound</a></li>
+        <li><a href="#">Photography</a></li>
+        <li><a href="#">Street & Skate</a></li>
+        <li><a href="#">Retro & Collect</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Lenders</div>
+      <ul class="footer-links">
+        <li><a href="#">List Your Gear</a></li>
+        <li><a href="#">Pricing Guide</a></li>
+        <li><a href="#">Lender Dashboard</a></li>
+        <li><a href="#">Protection Policy</a></li>
+        <li><a href="#">Payouts</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Community</div>
+      <ul class="footer-links">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Zine Archive</a></li>
+        <li><a href="#">Trust & Safety</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026  Hobbify · Built by the community, for the curious.</p>
+    <div class="footer-badge">✦ No ads. No algorithms. Just vibes.</div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (Array.from(entry.target.parentElement?.children || []).indexOf(entry.target)));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Hero parallax on scroll
+  const hero = document.querySelector('.hero');
+  const sunburst = document.querySelector('.sunburst');
+  const heroContent = document.querySelector('.hero-content');
+
+  window.addEventListener('scroll', () => {
+    const scroll = window.scrollY;
+    if (scroll < window.innerHeight) {
+      if (sunburst) sunburst.style.transform = `translate(-50%, calc(-50% + ${scroll * 0.3}px))`;
+      if (heroContent) heroContent.style.transform = `translateY(${scroll * 0.15}px)`;
+    }
+  });
+
+  // Sticker bounce on product cards
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s';
+    });
+  });
+
+  // Cat card colors on hover
+  document.querySelectorAll('.cat-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+    });
+  });
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--mustard)' : '';
+    });
+  });
+
+  // Chat input enter key
+  const chatInput = document.querySelector('.chat-input-field');
+  const sendBtn = document.querySelector('.chat-send-btn');
+  const chatBody = document.querySelector('.chat-body');
+
+  if (sendBtn && chatInput && chatBody) {
+    function sendMessage() {
+      const val = chatInput.value.trim();
+      if (!val) return;
+      const msg = document.createElement('div');
+      msg.className = 'msg msg-sent';
+      msg.textContent = val;
+      msg.style.opacity = '0';
+      msg.style.transform = 'translateX(20px)';
+      chatBody.appendChild(msg);
+      chatInput.value = '';
+      chatBody.scrollTop = chatBody.scrollHeight;
+      requestAnimationFrame(() => {
+        msg.style.transition = 'all 0.3s ease';
+        msg.style.opacity = '1';
+        msg.style.transform = 'translateX(0)';
+      });
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
+
+  // Checkout submit
+  const checkoutBtn = document.querySelector('.checkout-submit');
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      checkoutBtn.textContent = 'BOOKING CONFIRMED ✓';
+      checkoutBtn.style.background = 'var(--forest)';
+      checkoutBtn.style.cursor = 'default';
+    });
+  }
+</script>
 </body>
 </html>
