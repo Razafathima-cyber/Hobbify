@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="theme-color" content="#F5EDD8">
+<meta name="theme-color" content="#FFFFFF">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intro</title>
@@ -11,20 +11,23 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: #F5EDD8;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ensures no zoom/cropping */
   }
 
   @media (max-width: 768px) {
     video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
   }
 </style>
@@ -40,7 +43,7 @@
   const video = document.getElementById("introVideo");
 
   let loops = 0;
-  const maxLoops = 1; // reduced loop for faster transition
+  const maxLoops = 1;
 
   video.addEventListener("ended", () => {
     loops++;
