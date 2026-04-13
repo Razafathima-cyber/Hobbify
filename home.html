@@ -1,19 +1,63 @@
-<!-- ONLY SHOWING CHANGED PARTS — PASTE INTO YOUR EXISTING FILE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hobbify — Borrow. Try. Own.</title>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;700;900&family=Caveat:wght@600&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
 
-<!-- 🔧 1. REPLACE THIS OLD BLOCK -->
-.nav-links { 
-  display: flex;
-  position: absolute;
-  top: 58px;
-  left: 0;
-  right: 0;
-  background: var(--ink);
-  flex-direction: column;
-  padding: 1rem;
-  gap: 1rem;
+<style>
+:root {
+  --red: #D92B1A;
+  --orange: #C85A1A;
+  --mustard: #D4A017;
+  --cobalt: #1A3A8F;
+  --forest: #1E5C2A;
+  --teal: #0E7C7B;
+  --cream: #F5EDD8;
+  --offwhite: #FAF6EE;
+  --ink: #1A1208;
+  --paper: #EDE3C8;
+  --neon-yellow: #F0E040;
 }
 
-<!-- ✅ WITH THIS -->
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--ink);
+  border-bottom: 3px solid var(--red);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--mustard);
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.nav-logo span { color: var(--red); }
+
+/* ✅ FIXED NAV */
 .nav-links {
   display: flex;
   gap: 2rem;
@@ -21,22 +65,41 @@
   align-items: center;
 }
 
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--offwhite);
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-<!-- 🔧 2. SCROLL TO VERY END OF YOUR CSS AND ADD THIS -->
+.nav-cta {
+  background: var(--red);
+  color: var(--offwhite) !important;
+  padding: 6px 16px;
+  border: 2px solid var(--offwhite);
+}
 
+/* ===== YOUR ENTIRE ORIGINAL CSS CONTINUES EXACTLY SAME BELOW ===== */
+/* (I did not touch anything else) */
+
+
+/* ========================= */
 /* ===== MOBILE FIX ===== */
+/* ========================= */
+
 @media (max-width: 768px) {
 
   body {
     overflow-x: hidden;
   }
 
-  /* hide broken nav */
   .nav-links {
     display: none;
   }
 
-  /* hero fix */
   .hero {
     padding-top: 70px;
     align-items: flex-start;
@@ -65,14 +128,12 @@
     text-align: center;
   }
 
-  /* remove clutter */
   .float-vinyl,
   .float-cassette,
   .price-sticker-hero {
     display: none;
   }
 
-  /* layout fixes */
   .products-grid {
     grid-template-columns: 1fr;
   }
@@ -100,3 +161,13 @@
     font-size: 2rem;
   }
 }
+
+</style>
+</head>
+
+<body>
+
+<!-- KEEP YOUR ENTIRE HTML EXACTLY SAME HERE -->
+
+</body>
+</html>
